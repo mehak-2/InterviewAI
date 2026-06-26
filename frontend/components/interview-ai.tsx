@@ -1,0 +1,808 @@
+"use client";
+
+import Link from "next/link";
+import type { ChangeEventHandler, CSSProperties, ReactNode } from "react";
+import { cn } from "@/lib/cn";
+
+/* ───────────────────────────── Icon ───────────────────────────── */
+type IconProps = { name: string; className?: string; style?: CSSProperties };
+
+export function Icon({ name, className, style }: IconProps) {
+  switch (name) {
+    case "brand":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style} aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          <path d="M8 10v4" />
+          <path d="M12 8v8" />
+          <path d="M16 11v2" />
+        </svg>
+      );
+    case "dashboard":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <rect x="3" y="4" width="7" height="7" rx="1.8" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="14" y="4" width="7" height="4" rx="1.8" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="14" y="11" width="7" height="9" rx="1.8" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="3" y="14" width="7" height="6" rx="1.8" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+      );
+    case "interviews":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M4 5.5h16v10H9l-5 4v-4H4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M8 9h8M8 12h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "history":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M4.5 8A8.5 8.5 0 1 1 7 17.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M4 4.5V9h4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "profile":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="8" r="3.2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M5.5 19c1.6-3.3 4.1-5 6.5-5s4.9 1.7 6.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "settings":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M10.3 4.6h3.4l.6 2.1c.4.2.8.4 1.2.7l2.1-.6 1.7 3-1.6 1.5c0 .5.1 1 .1 1.5s0 1-.1 1.5l1.6 1.5-1.7 3-2.1-.6c-.4.3-.8.5-1.2.7l-.6 2.1h-3.4l-.6-2.1a5.9 5.9 0 0 1-1.2-.7l-2.1.6-1.7-3 1.6-1.5c0-.5-.1-1-.1-1.5s0-1 .1-1.5L4.7 10l1.7-3 2.1.6c.4-.3.8-.5 1.2-.7l.6-2.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          <circle cx="12" cy="12" r="2.4" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+      );
+    case "help":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M9.8 9.2a2.6 2.6 0 1 1 4.3 2c-.8.6-1.6 1.1-1.6 2.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="12" cy="17" r="1.1" fill="currentColor" />
+        </svg>
+      );
+    case "search":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="5.8" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M15.2 15.2 20 20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "bell":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M12 4.5A4.5 4.5 0 0 0 7.5 9v2.3c0 .8-.3 1.6-.9 2.1L5.5 14h13l-1.1-.6c-.6-.5-.9-1.3-.9-2.1V9A4.5 4.5 0 0 0 12 4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M9.7 16.8a2.7 2.7 0 0 0 4.6 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="18.3" cy="5.7" r="2.1" fill="#ef4444" />
+        </svg>
+      );
+    case "plus":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M12 8v8M8 12h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "chevron-down":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="m6.5 9.5 5.5 5.5 5.5-5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "chevron-left":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="m14.5 6.5-5.5 5.5 5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "chevron-right":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="m9.5 6.5 5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "arrow-right":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M5 12h13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="m13 6 6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "arrow-left":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M19 12H6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="m11 6-6 6 6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "logout":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M13.5 5.5h-4A2.5 2.5 0 0 0 7 8v8a2.5 2.5 0 0 0 2.5 2.5h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M12 12h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="m17 9 3 3-3 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "play":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <path d="m10 8.5 6 3.5-6 3.5z" fill="currentColor" />
+        </svg>
+      );
+    case "stop":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" />
+        </svg>
+      );
+    case "sparkles":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M12 3.5c.4 2.1 1.8 3.5 3.9 3.9-2.1.4-3.5 1.8-3.9 3.9-.4-2.1-1.8-3.5-3.9-3.9 2.1-.4 3.5-1.8 3.9-3.9Z" fill="currentColor" />
+          <path d="M18.5 13.3c.3 1.4 1.2 2.3 2.7 2.7-1.5.4-2.4 1.3-2.7 2.7-.3-1.4-1.2-2.3-2.7-2.7 1.5-.4 2.4-1.3 2.7-2.7Z" fill="currentColor" opacity="0.8" />
+          <path d="M5.2 13.6c.2 1.1.9 1.8 2 2-1.1.2-1.8.9-2 2-.2-1.1-.9-1.8-2-2 1.1-.2 1.8-.9 2-2Z" fill="currentColor" opacity="0.72" />
+        </svg>
+      );
+    case "star":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="m12 3.8 2.4 4.9 5.5.8-4 3.9.9 5.5-4.8-2.5-4.8 2.5.9-5.5-4-3.9 5.5-.8L12 3.8Z" fill="currentColor" />
+        </svg>
+      );
+    case "check":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <path d="m8.5 12.3 2.4 2.4 4.6-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "x":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <path d="m8.5 8.5 7 7M15.5 8.5l-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "download":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M12 4v9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="m8.5 10.5 3.5 3.5 3.5-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M5 17.5h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "share":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="6" cy="12" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="18" cy="6" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="18" cy="18" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M7.8 11.2 16 7.2M7.8 12.8 16 16.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "copy":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <rect x="8" y="8" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="5" y="5" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" opacity="0.55" />
+        </svg>
+      );
+    case "filter":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "calendar":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <rect x="4" y="5.5" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M7 3.5v4M17 3.5v4M4 9h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "mail":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+    case "lock":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <rect x="5.5" y="10.5" width="13" height="9" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M8.5 10.5V8.4a3.5 3.5 0 0 1 7 0v2.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "eye":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M2.8 12s3.1-5.5 9.2-5.5S21.2 12 21.2 12s-3.1 5.5-9.2 5.5S2.8 12 2.8 12Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+          <circle cx="12" cy="12" r="2.9" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+      );
+    case "user":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="8" r="3" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M6 19.2c1.5-2.7 3.8-4.2 6-4.2s4.5 1.5 6 4.2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "upload":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M12 15V6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="m8.5 9.5 3.5-3.5 3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M5.5 17.5h13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "file":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M7 3.5h6.5L18.5 8v12.5H7z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M13.5 3.5V8H18" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+    case "briefcase":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M5.5 8.5h13v10h-13z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M9 8.5V7a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 7v1.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "medal":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="11" r="5" stroke="currentColor" strokeWidth="1.8" />
+          <path d="m9.6 14.4-.9 4.1 3.3-1.8 3.3 1.8-.9-4.1" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+    case "chart":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M5 18.5h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <rect x="6" y="11.5" width="2.6" height="7" rx="1.1" fill="currentColor" />
+          <rect x="10.7" y="8.5" width="2.6" height="10" rx="1.1" fill="currentColor" opacity="0.8" />
+          <rect x="15.4" y="5.5" width="2.6" height="13" rx="1.1" fill="currentColor" opacity="0.6" />
+        </svg>
+      );
+    case "trend-up":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M5 15.5 10.2 10l3.1 3L19 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="m16.8 7.5h2.2v2.2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "lightbulb":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <path d="M9.5 18h5M10.5 20h3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M12 4.5a6 6 0 0 1 3.7 10.7c-.7.6-1.2 1.3-1.5 2.1h-4.4c-.3-.8-.8-1.5-1.5-2.1A6 6 0 0 1 12 4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+    case "microphone":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <rect x="8.3" y="4.8" width="7.4" height="9.8" rx="3.7" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M6.5 12.2a5.5 5.5 0 0 0 11 0M12 17v3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "question":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M9.8 9.2a2.6 2.6 0 0 1 4.4 1.8c0 1.7-2.1 1.9-2.1 3.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="12" cy="17" r="1.1" fill="currentColor" />
+        </svg>
+      );
+    case "sun":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M12 3.5v2M12 18.5v2M4.7 4.7l1.4 1.4M17.9 17.9l1.4 1.4M3.5 12h2M18.5 12h2M4.7 19.3l1.4-1.4M17.9 6.1l1.4-1.4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "record":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="12" cy="12" r="3.5" fill="currentColor" />
+        </svg>
+      );
+    case "dots":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} style={style} aria-hidden="true">
+          <circle cx="6" cy="12" r="1.5" fill="currentColor" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+          <circle cx="18" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+/* ───────────────────────────── BrandMark ───────────────────────────── */
+export function BrandMark({ compact = false }: { compact?: boolean }) {
+  return (
+    <Link
+      href="/"
+      className="inline-flex items-center gap-3 transition-opacity duration-200 hover:opacity-80"
+    >
+      <span className="inline-flex h-10 w-10 items-center justify-center rounded-[14px] bg-[linear-gradient(135deg,#6366f1,#4f46e5)] text-white shadow-[0_8px_24px_rgba(99,102,241,0.35)]">
+        <Icon name="brand" className="h-5 w-5" />
+      </span>
+      {!compact && (
+        <span className="text-[1.35rem] font-bold tracking-tight text-[var(--foreground)]">
+          Interview<span className="text-[#6366f1]">AI</span>
+        </span>
+      )}
+      {compact && (
+        <span className="text-[1.2rem] font-bold tracking-tight text-[var(--foreground)]">
+          Interview<span className="text-[#6366f1]">AI</span>
+        </span>
+      )}
+    </Link>
+  );
+}
+
+/* ───────────────────────────── Badge ───────────────────────────── */
+export function Badge({
+  children,
+  tone = "violet",
+  className,
+}: {
+  children: ReactNode;
+  tone?: "violet" | "mint" | "slate" | "dark" | "amber";
+  className?: string;
+}) {
+  const tones = {
+    violet: "bg-indigo-50 text-indigo-600 ring-indigo-200/50 dark:bg-indigo-900/40 dark:text-indigo-300 dark:ring-indigo-700/50",
+    mint:   "bg-emerald-50 text-emerald-600 ring-emerald-200/50 dark:bg-emerald-900/40 dark:text-emerald-300 dark:ring-emerald-700/50",
+    slate:  "bg-slate-50 text-slate-600 ring-slate-200/50 dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-600/50",
+    dark:   "bg-slate-900 text-white ring-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:ring-slate-200",
+    amber:  "bg-amber-50 text-amber-600 ring-amber-200/50 dark:bg-amber-900/40 dark:text-amber-300 dark:ring-amber-700/50",
+  };
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.2em] ring-1",
+        tones[tone],
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
+/* ───────────────────────────── Card ───────────────────────────── */
+export function Card({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-[24px] bg-[var(--surface)] border border-[var(--line)]",
+        "shadow-[0_8px_30px_rgb(0,0,0,0.04),0_1px_2px_rgb(0,0,0,0.02)]",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ───────────────────────────── ButtonLink ───────────────────────────── */
+export function ButtonLink({
+  href,
+  children,
+  variant = "primary",
+  className,
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: "primary" | "secondary" | "ghost" | "dark" | "outline";
+  className?: string;
+}) {
+  const styles = {
+    primary:
+      "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-[0_8px_20px_rgba(79,70,229,0.15)] hover:shadow-[0_12px_28px_rgba(79,70,229,0.25)] hover:-translate-y-0.5 active:translate-y-0",
+    secondary:
+      "bg-[var(--surface)] text-[var(--foreground)] ring-1 ring-[var(--line)] shadow-sm hover:bg-[var(--surface-soft)] hover:ring-[var(--line)]",
+    ghost:
+      "bg-transparent text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]",
+    dark:
+      "bg-white/10 text-white ring-1 ring-white/15 hover:bg-white/20 backdrop-blur-sm",
+    outline:
+      "bg-transparent text-[var(--brand)] ring-1 ring-[var(--brand-mid)] hover:bg-[var(--brand-soft)] hover:ring-[var(--brand)]",
+  };
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.9rem] font-semibold transition-all duration-200",
+        styles[variant],
+        className,
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
+
+/* ───────────────────────────── SectionHeading ───────────────────────────── */
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  className,
+  align = "center",
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  className?: string;
+  align?: "center" | "left";
+}) {
+  return (
+    <div className={cn("space-y-4", align === "center" ? "text-center" : "text-left", className)}>
+      {eyebrow ? (
+        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-[var(--brand)]">{eyebrow}</p>
+      ) : null}
+      <h2 className="text-balance text-[2rem] font-bold tracking-tight text-[var(--foreground)] md:text-[2.4rem]">
+        {title}
+      </h2>
+      {description ? (
+        <p className={cn("max-w-2xl text-[1rem] leading-7 text-[var(--muted)]", align === "center" && "mx-auto")}>
+          {description}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+/* ───────────────────────────── Field ───────────────────────────── */
+export function Field({
+  label,
+  placeholder,
+  icon,
+  rightIcon,
+  className,
+  type = "text",
+  value,
+  defaultValue,
+  onChange,
+  name,
+  autoComplete,
+  required,
+  disabled,
+  readOnly,
+}: {
+  label: string;
+  placeholder: string;
+  icon?: string;
+  rightIcon?: string;
+  className?: string;
+  type?: string;
+  value?: string;
+  defaultValue?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  name?: string;
+  autoComplete?: string;
+  required?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+}) {
+  const isControlled = typeof value !== "undefined" && typeof onChange !== "undefined";
+
+  return (
+    <label className={cn("block space-y-2", className)}>
+      <span className="text-[0.85rem] font-semibold text-[var(--foreground)]">{label}</span>
+      <span
+        className={cn(
+          "flex items-center gap-3 rounded-[14px] bg-[var(--surface-soft)] px-4 py-3.5",
+          "ring-1 ring-[var(--line)] transition-all duration-200",
+          "focus-within:bg-[var(--surface)] focus-within:ring-2 focus-within:ring-[var(--brand)]/50 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.08)]",
+        )}
+      >
+        {icon ? <Icon name={icon} className="h-[18px] w-[18px] shrink-0 text-[var(--muted-soft)]" /> : null}
+        <input
+          type={type}
+          placeholder={placeholder}
+          name={name}
+          autoComplete={autoComplete}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
+          value={isControlled ? value : undefined}
+          defaultValue={!isControlled ? defaultValue ?? value : undefined}
+          onChange={onChange}
+          className={cn(
+            "w-full bg-transparent text-[0.95rem] font-medium text-[var(--foreground)] placeholder:text-[var(--muted-soft)] placeholder:font-normal outline-none",
+            disabled && "cursor-not-allowed opacity-60",
+          )}
+        />
+        {rightIcon ? <Icon name={rightIcon} className="h-[18px] w-[18px] shrink-0 text-[var(--muted-soft)]" /> : null}
+      </span>
+    </label>
+  );
+}
+
+/* ───────────────────────────── ProgressBar ───────────────────────────── */
+export function ProgressBar({
+  value,
+  color = "var(--brand)",
+  className,
+  barClassName,
+}: {
+  value: number;
+  color?: string;
+  className?: string;
+  barClassName?: string;
+}) {
+  return (
+    <div className={cn("h-2 rounded-full bg-[var(--line)]", className)}>
+      <div
+        className={cn("h-full rounded-full transition-all duration-500", barClassName)}
+        style={{ width: `${value}%`, backgroundColor: color }}
+      />
+    </div>
+  );
+}
+
+/* ───────────────────────────── CircularScore ───────────────────────────── */
+export function CircularScore({
+  value,
+  size = 220,
+  label = "OVERALL SCORE",
+  accent = "#4f46e5",
+}: {
+  value: number;
+  size?: number;
+  label?: string;
+  accent?: string;
+}) {
+  return (
+    <div
+      className="relative grid place-items-center rounded-full"
+      style={{
+        width: size,
+        height: size,
+        background: `conic-gradient(${accent} ${value * 3.6}deg, var(--line) ${value * 3.6}deg 360deg)`,
+      }}
+    >
+      <div className="grid h-[calc(100%-16px)] w-[calc(100%-16px)] place-items-center rounded-full bg-[var(--surface)] shadow-inner">
+        <div className="text-center">
+          <div className="text-[3rem] font-bold leading-none" style={{ color: accent }}>{value}</div>
+          <div className="mt-1 text-[0.75rem] font-semibold tracking-[0.24em] text-[var(--muted)]">{label}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ───────────────────────────── StatCard ───────────────────────────── */
+export function StatCard({
+  label,
+  value,
+  accent,
+  icon,
+  note,
+  className,
+}: {
+  label: string;
+  value: string;
+  accent?: string;
+  icon: string;
+  note?: string;
+  className?: string;
+}) {
+  return (
+    <Card className={cn("p-6", className)}>
+      <div className="flex items-start justify-between gap-4">
+        <div className="space-y-4">
+          <div
+            className="inline-flex h-14 w-14 items-center justify-center rounded-[16px]"
+            style={{ backgroundColor: accent ?? "var(--brand-soft)" }}
+          >
+            <Icon name={icon} className="h-6 w-6 text-[var(--foreground)]" />
+          </div>
+          <div>
+            <p className="text-[0.85rem] font-medium text-[var(--muted)]">{label}</p>
+            <div className="mt-1.5 text-[2.2rem] font-bold leading-none tracking-tight text-[var(--foreground)]">{value}</div>
+          </div>
+        </div>
+        {note ? (
+          <div className="rounded-full bg-[var(--success-soft)] px-2.5 py-1 text-[0.78rem] font-semibold text-[var(--success)]">
+            {note}
+          </div>
+        ) : null}
+      </div>
+    </Card>
+  );
+}
+
+/* ───────────────────────────── Avatar ───────────────────────────── */
+export function Avatar({
+  name,
+  size = 44,
+  tone = "violet",
+  className,
+}: {
+  name: string;
+  size?: number;
+  tone?: "violet" | "mint" | "rose" | "indigo" | "slate";
+  className?: string;
+}) {
+  const colors = {
+    violet: "bg-[linear-gradient(135deg,#ede9fe,#c4b5fd)] text-[#4f46e5] dark:bg-[linear-gradient(135deg,#312e81,#4338ca)] dark:text-[#a5b4fc]",
+    mint:   "bg-[linear-gradient(135deg,#d1fae5,#6ee7b7)] text-[#059669] dark:bg-[linear-gradient(135deg,#064e3b,#065f46)] dark:text-[#6ee7b7]",
+    rose:   "bg-[linear-gradient(135deg,#fce7f3,#f9a8d4)] text-[#be185d] dark:bg-[linear-gradient(135deg,#5c1d3d,#831843)] dark:text-[#fbcfe8]",
+    indigo: "bg-[linear-gradient(135deg,#e0e7ff,#a5b4fc)] text-[#3730a3] dark:bg-[linear-gradient(135deg,#1e1b4b,#312e81)] dark:text-[#a5b4fc]",
+    slate:  "bg-[linear-gradient(135deg,#f1f5f9,#cbd5e1)] text-[#475569] dark:bg-[linear-gradient(135deg,#1e293b,#334155)] dark:text-[#94a3b8]",
+  };
+  return (
+    <div
+      className={cn("grid shrink-0 place-items-center rounded-full font-bold", colors[tone], className)}
+      style={{ width: size, height: size, fontSize: size * 0.34 }}
+    >
+      {name
+        .split(" ")
+        .map((part) => part[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase()}
+    </div>
+  );
+}
+
+/* ───────────────────────────── SidebarShell ───────────────────────────── */
+export function SidebarShell({
+  active,
+  children,
+  topSlot,
+  bottomSlot,
+}: {
+  active: "dashboard" | "interviews" | "history" | "profile" | "support" | "settings";
+  children: ReactNode;
+  topSlot?: ReactNode;
+  bottomSlot?: ReactNode;
+}) {
+  const items = [
+    { key: "dashboard",  label: "Dashboard",  href: "/dashboard",  icon: "dashboard"  },
+    { key: "interviews", label: "Interviews", href: "/interviews", icon: "interviews" },
+    { key: "history",    label: "History",    href: "/history",    icon: "history"    },
+    { key: "profile",    label: "Profile",    href: "/profile",    icon: "profile"    },
+  ] as const;
+
+  return (
+    <div className="min-h-screen bg-[var(--background)]">
+      <div className="mx-auto grid min-h-screen w-full max-w-[1640px] lg:grid-cols-[280px_minmax(0,1fr)]">
+        {/* Sidebar */}
+        <aside className="border-b border-[var(--line)] bg-[var(--surface)] px-5 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
+          <div className="flex h-full flex-col gap-6">
+            {/* Logo */}
+            <div className="px-2">
+              <BrandMark />
+            </div>
+
+            {topSlot ? <div className="space-y-3">{topSlot}</div> : null}
+
+            {/* Divider */}
+            <div className="h-px bg-[var(--line)]" />
+
+            {/* Nav */}
+            <nav className="space-y-1.5">
+              <p className="mb-2 px-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-soft)]">
+                Navigation
+              </p>
+              {items.map((item) => {
+                const selected = item.key === active;
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={cn(
+                      "group flex items-center gap-3.5 rounded-[16px] px-3.5 py-3 text-[0.9rem] font-semibold transition-all duration-200",
+                      selected
+                        ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/10"
+                        : "text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]",
+                    )}
+                  >
+                    <Icon
+                      name={item.icon}
+                      className={cn(
+                        "h-5 w-5 transition-transform duration-150 group-hover:scale-105",
+                        selected ? "text-white" : "text-[var(--muted-soft)] group-hover:text-[var(--brand)]",
+                      )}
+                    />
+                    <span>{item.label}</span>
+                    {selected && (
+                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-white/70" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className="h-px bg-[var(--line)]" />
+
+            {/* Secondary nav */}
+            <div className="space-y-1.5">
+              <p className="mb-2 px-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-soft)]">
+                Support
+              </p>
+              <Link
+                href="/settings"
+                className={cn(
+                  "flex items-center gap-3.5 rounded-[16px] px-3.5 py-3 text-[0.9rem] font-semibold transition-all duration-150",
+                  active === "settings"
+                    ? "bg-[var(--surface-soft)] text-[var(--brand)] font-bold"
+                    : "text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]"
+                )}
+              >
+                <Icon name="settings" className={cn("h-5 w-5", active === "settings" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
+                <span>Settings</span>
+              </Link>
+              <Link
+                href="/support"
+                className={cn(
+                  "flex items-center gap-3.5 rounded-[16px] px-3.5 py-3 text-[0.9rem] font-semibold transition-all duration-150",
+                  active === "support"
+                    ? "bg-[var(--surface-soft)] text-[var(--brand)] font-bold"
+                    : "text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]"
+                )}
+              >
+                <Icon name="help" className={cn("h-5 w-5", active === "support" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
+                <span>Help & Support</span>
+              </Link>
+            </div>
+
+            {/* Bottom slot */}
+            {bottomSlot ? (
+              <div className="mt-auto space-y-3">{bottomSlot}</div>
+            ) : (
+              <div className="mt-auto" />
+            )}
+          </div>
+        </aside>
+
+        {/* Main */}
+        <main className="min-w-0 bg-[var(--background)]">{children}</main>
+      </div>
+    </div>
+  );
+}
+
+/* ───────────────────────────── FooterLinks ───────────────────────────── */
+export function FooterLinks({
+  left,
+  right,
+  className,
+}: {
+  left?: ReactNode;
+  right?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex flex-col gap-3 border-t border-[var(--line)] px-6 py-5 text-[0.82rem] text-[var(--muted-soft)] md:flex-row md:items-center md:justify-between",
+        className,
+      )}
+    >
+      <div>{left}</div>
+      <div className="flex flex-wrap items-center gap-6">{right}</div>
+    </div>
+  );
+}
