@@ -49,16 +49,16 @@ function SignupContent() {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-[#04060e] text-slate-100 font-sans">
       {/* ── Left dark panel ── */}
       <div
-        className="relative hidden lg:flex lg:w-[480px] xl:w-[540px] shrink-0 flex-col justify-between overflow-hidden bg-slate-900 p-12 text-slate-300"
+        className="relative hidden lg:flex lg:w-[480px] xl:w-[540px] shrink-0 flex-col justify-between overflow-hidden p-12 border-r border-indigo-500/10 bg-[#02040a]"
       >
         <div className="pointer-events-none absolute inset-0">
           <div className="animate-blob absolute -top-24 -right-24 h-[440px] w-[440px] rounded-full opacity-15"
             style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 65%)" }} />
-          <div className="animate-blob delay-400 absolute bottom-0 left-0 h-[360px] w-[360px] rounded-full opacity-10"
-            style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 65%)" }} />
+          <div className="animate-blob delay-300 absolute bottom-0 left-0 h-[360px] w-[360px] rounded-full opacity-10"
+            style={{ background: "radial-gradient(circle, #a855f7 0%, transparent 65%)" }} />
         </div>
 
         <div className="relative">
@@ -67,7 +67,7 @@ function SignupContent() {
 
         <div className="relative space-y-8">
           <div>
-            <h2 className="text-[1.9rem] font-bold leading-snug text-white">
+            <h2 className="text-[1.9rem] font-black leading-snug text-white">
               Start your interview<br />prep journey today.
             </h2>
             <p className="mt-3 text-[0.9rem] leading-7 text-slate-400">
@@ -75,10 +75,10 @@ function SignupContent() {
             </p>
           </div>
 
-          <ul className="space-y-3">
+          <ul className="space-y-3.5">
             {bullets.map((b) => (
               <li key={b} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-[0.65rem] font-bold text-emerald-400">✓</span>
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-[0.68rem] font-bold text-emerald-400">✓</span>
                 <span className="text-[0.88rem] text-slate-300">{b}</span>
               </li>
             ))}
@@ -86,33 +86,32 @@ function SignupContent() {
         </div>
 
         <p className="relative text-[0.75rem] text-slate-500">
-          © 2026 InterviewAI. All rights reserved.
+          &copy; 2026 InterviewAI. All rights reserved.
         </p>
       </div>
 
       {/* ── Right form panel ── */}
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-12">
         <div className="mb-8 lg:hidden">
-          <BrandMark />
+          <BrandMark variant="sidebar" />
         </div>
 
         <div className="w-full max-w-[420px] animate-fade-up">
           <div className="mb-7">
-            <h1 className="text-[1.75rem] font-bold tracking-tight text-[var(--foreground)]">Create your account</h1>
-            <p className="mt-1.5 text-[0.9rem] text-[var(--muted)]">
+            <h1 className="text-[1.8rem] font-extrabold tracking-tight text-white">Create your account</h1>
+            <p className="mt-1.5 text-[0.9rem] text-slate-400">
               Already have an account?{" "}
-              <Link href="/login" className="font-semibold text-[var(--brand)] hover:opacity-75">Sign in</Link>
+              <Link href="/login" className="font-semibold text-indigo-400 hover:opacity-75">Sign in</Link>
             </p>
           </div>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
-            {/* Error */}
             {error && (
-              <div className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3" role="alert">
-                <div className="h-4 w-4 shrink-0 text-red-500">
+              <div className="flex items-center gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3" role="alert">
+                <div className="h-4 w-4 shrink-0 text-red-400">
                   <svg viewBox="0 0 16 16" fill="currentColor"><path fillRule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-3.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4.5Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd"/></svg>
                 </div>
-                <p className="text-[0.84rem] text-red-700">{error}</p>
+                <p className="text-[0.84rem] text-red-400">{error}</p>
               </div>
             )}
 
@@ -120,18 +119,18 @@ function SignupContent() {
             <div className="grid gap-3 sm:grid-cols-2">
               {(["firstName", "lastName"] as const).map((k) => (
                 <div key={k} className="space-y-1.5">
-                  <label className="block text-[0.8rem] font-semibold text-[var(--foreground)]">
+                  <label className="block text-[0.8rem] font-bold text-slate-300">
                     {k === "firstName" ? "First name" : "Last name"}
                   </label>
-                  <div className="flex items-center gap-2.5 rounded-xl border border-[var(--line)] bg-[var(--surface)] px-4 py-3 transition-all duration-150 focus-within:border-[var(--brand)] focus-within:ring-2 focus-within:ring-[var(--brand)]/10">
-                    <Icon name="user" className="h-4 w-4 shrink-0 text-[var(--muted-soft)]" />
+                  <div className="flex items-center gap-2.5 rounded-xl border border-indigo-500/10 bg-slate-900/60 px-4 py-3 transition-all duration-150 focus-within:border-indigo-500/40 focus-within:ring-2 focus-within:ring-indigo-500/10">
+                    <Icon name="user" className="h-4 w-4 shrink-0 text-slate-500" />
                     <input
                       type="text" name={k}
                       autoComplete={k === "firstName" ? "given-name" : "family-name"}
                       placeholder={k === "firstName" ? "Alex" : "Rivera"}
                       required disabled={submitting}
                       value={form[k]} onChange={handle(k)}
-                      className="w-full bg-transparent text-[0.9rem] font-medium text-[var(--foreground)] placeholder:font-normal placeholder:text-[var(--muted-soft)] outline-none disabled:opacity-60"
+                      className="w-full bg-transparent text-[0.9rem] font-medium text-white placeholder:font-normal placeholder:text-slate-600 outline-none disabled:opacity-60"
                     />
                   </div>
                 </div>
@@ -140,31 +139,31 @@ function SignupContent() {
 
             {/* Email */}
             <div className="space-y-1.5">
-              <label className="block text-[0.8rem] font-semibold text-[var(--foreground)]">Work email</label>
-              <div className="flex items-center gap-2.5 rounded-xl border border-[var(--line)] bg-[var(--surface)] px-4 py-3 transition-all duration-150 focus-within:border-[var(--brand)] focus-within:ring-2 focus-within:ring-[var(--brand)]/10">
-                <Icon name="mail" className="h-4 w-4 shrink-0 text-[var(--muted-soft)]" />
+              <label className="block text-[0.8rem] font-bold text-slate-300">Work email</label>
+              <div className="flex items-center gap-2.5 rounded-xl border border-indigo-500/10 bg-slate-900/60 px-4 py-3 transition-all duration-150 focus-within:border-indigo-500/40 focus-within:ring-2 focus-within:ring-indigo-500/10">
+                <Icon name="mail" className="h-4 w-4 shrink-0 text-slate-500" />
                 <input
                   type="email" name="email" autoComplete="email" required
                   placeholder="name@company.com"
                   disabled={submitting} value={form.email} onChange={handle("email")}
-                  className="w-full bg-transparent text-[0.9rem] font-medium text-[var(--foreground)] placeholder:font-normal placeholder:text-[var(--muted-soft)] outline-none disabled:opacity-60"
+                  className="w-full bg-transparent text-[0.9rem] font-medium text-white placeholder:font-normal placeholder:text-slate-600 outline-none disabled:opacity-60"
                 />
               </div>
             </div>
 
             {/* Password */}
             <div className="space-y-1.5">
-              <label className="block text-[0.8rem] font-semibold text-[var(--foreground)]">Password</label>
-              <div className="flex items-center gap-2.5 rounded-xl border border-[var(--line)] bg-[var(--surface)] px-4 py-3 transition-all duration-150 focus-within:border-[var(--brand)] focus-within:ring-2 focus-within:ring-[var(--brand)]/10">
-                <Icon name="lock" className="h-4 w-4 shrink-0 text-[var(--muted-soft)]" />
+              <label className="block text-[0.8rem] font-bold text-slate-300">Password</label>
+              <div className="flex items-center gap-2.5 rounded-xl border border-indigo-500/10 bg-slate-900/60 px-4 py-3 transition-all duration-150 focus-within:border-indigo-500/40 focus-within:ring-2 focus-within:ring-indigo-500/10">
+                <Icon name="lock" className="h-4 w-4 shrink-0 text-slate-500" />
                 <input
                   type={showPass ? "text" : "password"} name="password" autoComplete="new-password" required
                   placeholder="At least 8 characters"
                   disabled={submitting} value={form.password} onChange={handle("password")}
-                  className="w-full bg-transparent text-[0.9rem] font-medium text-[var(--foreground)] placeholder:font-normal placeholder:text-[var(--muted-soft)] outline-none disabled:opacity-60"
+                  className="w-full bg-transparent text-[0.9rem] font-medium text-white placeholder:font-normal placeholder:text-slate-600 outline-none disabled:opacity-60"
                 />
                 <button type="button" tabIndex={-1} onClick={() => setShowPass(!showPass)}
-                  className="shrink-0 text-[var(--muted-soft)] transition-colors hover:text-[var(--brand)]">
+                  className="shrink-0 text-slate-500 transition-colors hover:text-indigo-400">
                   <Icon name="eye" className="h-4 w-4" />
                 </button>
               </div>
@@ -173,31 +172,21 @@ function SignupContent() {
             {/* Submit */}
             <button
               id="signup-submit" type="submit" disabled={submitting}
-              className="btn-shimmer mt-1 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#6366f1] to-[#4338ca] px-5 py-3.5 text-[0.9rem] font-semibold text-white shadow-[var(--shadow-brand-sm)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-brand)] disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none"
+              className="btn-shimmer mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#6366f1] to-[#4338ca] px-5 py-3.5 text-[0.9rem] font-semibold text-white shadow-[0_4px_16px_rgba(99,102,241,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(99,102,241,0.45)] disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none"
             >
-              {submitting ? (
-                <>
-                  <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                  </svg>
-                  Creating account…
-                </>
-              ) : (
-                <>Create free account <Icon name="arrow-right" className="h-4 w-4" /></>
-              )}
+              {submitting ? "Creating account…" : "Create free account"}
             </button>
 
             {/* Divider */}
-            <div className="flex items-center gap-3">
-              <div className="h-px flex-1 bg-[var(--line)]" />
-              <span className="text-[0.78rem] text-[var(--muted-soft)]">or</span>
-              <div className="h-px flex-1 bg-[var(--line)]" />
+            <div className="flex items-center gap-3 py-1">
+              <div className="h-px flex-1 bg-slate-900" />
+              <span className="text-[0.78rem] text-slate-600 font-bold uppercase tracking-wider">or</span>
+              <div className="h-px flex-1 bg-slate-900" />
             </div>
 
             {/* Google */}
             <button type="button"
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--surface)] px-5 py-3 text-[0.88rem] font-semibold text-[var(--foreground)] shadow-[var(--shadow-xs)] transition-all duration-150 hover:bg-[var(--surface-soft)]"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-800 bg-slate-900/60 px-5 py-3 text-[0.88rem] font-semibold text-slate-300 hover:text-white transition-all duration-150 hover:bg-slate-800/80"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -208,10 +197,10 @@ function SignupContent() {
               Continue with Google
             </button>
 
-            <p className="text-center text-[0.75rem] text-[var(--muted-soft)]">
+            <p className="text-center text-[0.75rem] text-slate-500">
               By creating an account you agree to our{" "}
-              <Link href="#terms" className="underline underline-offset-2 hover:text-[var(--brand)]">Terms</Link> and{" "}
-              <Link href="#privacy" className="underline underline-offset-2 hover:text-[var(--brand)]">Privacy Policy</Link>.
+              <Link href="#terms" className="underline underline-offset-2 hover:text-indigo-400">Terms</Link> and{" "}
+              <Link href="#privacy" className="underline underline-offset-2 hover:text-indigo-400">Privacy Policy</Link>.
             </p>
           </form>
         </div>
@@ -223,10 +212,10 @@ function SignupContent() {
 export default function SignupPage() {
   return (
     <Suspense fallback={
-      <div className="flex min-h-screen items-center justify-center" style={{ background: "var(--background)" }}>
+      <div className="flex min-h-screen items-center justify-center bg-[#04060e]">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-10 w-10 rounded-[12px] bg-gradient-to-br from-[#6366f1] to-[#4338ca] animate-pulse" />
-          <p className="text-[0.78rem] font-semibold uppercase tracking-widest text-[var(--muted-soft)]">Loading…</p>
+          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#4338ca] animate-pulse" />
+          <p className="text-[0.72rem] font-bold uppercase tracking-widest text-slate-500">Loading…</p>
         </div>
       </div>
     }>

@@ -365,17 +365,17 @@ export function Badge({
   className?: string;
 }) {
   const tones: Record<string, string> = {
-    violet: "bg-[#eef2ff] text-[#4f46e5] border-[#c7d2fe]",
-    mint:   "bg-[#d1fae5] text-[#065f46] border-[#6ee7b7]",
-    slate:  "bg-[#f1f5f9] text-[#475569] border-[#cbd5e1]",
-    dark:   "bg-[#0f172a] text-white border-[#1e293b]",
-    amber:  "bg-[#fef3c7] text-[#92400e] border-[#fcd34d]",
-    rose:   "bg-[#ffe4e6] text-[#be123c] border-[#fda4af]",
+    violet: "bg-indigo-500/10 text-indigo-300 border-indigo-500/20",
+    mint:   "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
+    slate:  "bg-slate-500/10 text-slate-300 border-slate-500/20",
+    dark:   "bg-slate-950 text-white border-slate-800",
+    amber:  "bg-amber-500/10 text-amber-300 border-amber-500/20",
+    rose:   "bg-rose-500/10 text-rose-300 border-rose-500/20",
   };
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.15em]",
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.15em]",
         tones[tone] ?? tones.violet,
         className,
       )}
@@ -396,7 +396,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-2xl bg-[var(--surface)] border border-[var(--line)] shadow-[var(--shadow-sm)]",
+        "rounded-2xl bg-[#090d16]/80 border border-[var(--line)] shadow-[var(--shadow-sm)] backdrop-blur-md",
         className,
       )}
     >
@@ -608,23 +608,22 @@ export function StatCard({
   className?: string;
 }) {
   return (
-    <Card className={cn("p-5 card-lift cursor-default", className)}>
+    <Card className={cn("p-5 card-lift cursor-default bg-[#090d16]/90 border border-slate-800/80 shadow-[0_4px_24px_rgba(99,102,241,0.04)]", className)}>
       <div className="flex items-start justify-between gap-3">
         <div
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl"
-          style={{ backgroundColor: accent ?? "var(--brand-soft)" }}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-indigo-500/20 bg-indigo-500/10"
         >
-          <Icon name={icon} className="h-5 w-5" style={{ color: "var(--brand-strong)" }} />
+          <Icon name={icon} className="h-5 w-5 text-indigo-400" />
         </div>
         {note ? (
-          <span className="rounded-full bg-[var(--success-soft)] px-2 py-0.5 text-[0.68rem] font-bold text-[var(--success-text)]">
+          <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[0.62rem] font-bold text-emerald-400 uppercase tracking-wider">
             {note}
           </span>
         ) : null}
       </div>
       <div className="mt-4">
-        <p className="text-[0.75rem] font-medium text-[var(--muted-soft)] uppercase tracking-[0.12em]">{label}</p>
-        <p className="mt-1 text-[1.9rem] font-bold leading-none tracking-tight text-[var(--foreground)]">{value}</p>
+        <p className="text-[0.72rem] font-bold text-slate-500 uppercase tracking-[0.16em]">{label}</p>
+        <p className="mt-1.5 text-[2.1rem] font-extrabold leading-none tracking-tight text-white">{value}</p>
       </div>
     </Card>
   );
@@ -643,16 +642,16 @@ export function Avatar({
   className?: string;
 }) {
   const colors: Record<string, string> = {
-    violet: "bg-[#eef2ff] text-[#4f46e5]",
-    mint:   "bg-[#d1fae5] text-[#065f46]",
-    rose:   "bg-[#ffe4e6] text-[#be123c]",
-    indigo: "bg-[#e0e7ff] text-[#3730a3]",
-    slate:  "bg-[#f1f5f9] text-[#475569]",
+    violet: "bg-indigo-950 text-indigo-300 border-indigo-500/20",
+    mint:   "bg-emerald-950 text-emerald-300 border-emerald-500/20",
+    rose:   "bg-rose-950 text-rose-300 border-rose-500/20",
+    indigo: "bg-indigo-950 text-indigo-300 border-indigo-500/20",
+    slate:  "bg-slate-900 text-slate-300 border-slate-800",
   };
   return (
     <div
       className={cn(
-        "grid shrink-0 place-items-center rounded-full font-bold ring-2 ring-white dark:ring-[var(--surface)]",
+        "grid shrink-0 place-items-center rounded-full font-bold border ring-2 ring-slate-950",
         colors[tone] ?? colors.violet,
         className,
       )}

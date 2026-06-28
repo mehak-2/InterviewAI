@@ -73,22 +73,20 @@ function ScoreTrendCard({ history }: { history: InterviewHistoryItem[] }) {
   }
 
   return (
-    <Card className="p-6 md:p-8">
+    <Card className="p-6 md:p-8 bg-[#090d16]/90 border border-slate-800/80 shadow-[0_4px_24px_rgba(99,102,241,0.04)]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-[1.1rem] font-bold text-[var(--foreground)]">Score Trend</h2>
-          <p className="mt-1 text-[0.82rem] text-[var(--muted-soft)]">
-            Last {timeframe === "weekly" ? "5" : "10"} sessions
+          <h2 className="text-[1.15rem] font-extrabold text-white">Score Trend</h2>
+          <p className="mt-1 text-[0.78rem] text-slate-500">
+            Last {timeframe === "weekly" ? "5" : "10"} completed sessions
           </p>
         </div>
-        <div className="flex items-center gap-1 rounded-full bg-[var(--surface-soft)] p-1">
+        <div className="flex rounded-lg bg-slate-950 p-1 border border-slate-800">
           <button
             onClick={() => setTimeframe("weekly")}
             className={cn(
-              "rounded-full px-3 py-1 text-[0.78rem] transition-all",
-              timeframe === "weekly"
-                ? "bg-[var(--surface)] font-semibold text-[var(--foreground)] shadow-sm"
-                : "font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
+              "rounded-md px-2.5 py-1 text-[0.72rem] font-bold transition-all",
+              timeframe === "weekly" ? "bg-indigo-500/20 text-indigo-300" : "text-slate-500 hover:text-slate-300",
             )}
           >
             Weekly
@@ -96,10 +94,8 @@ function ScoreTrendCard({ history }: { history: InterviewHistoryItem[] }) {
           <button
             onClick={() => setTimeframe("monthly")}
             className={cn(
-              "rounded-full px-3 py-1 text-[0.78rem] transition-all",
-              timeframe === "monthly"
-                ? "bg-[var(--surface)] font-semibold text-[var(--foreground)] shadow-sm"
-                : "font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
+              "rounded-md px-2.5 py-1 text-[0.72rem] font-bold transition-all",
+              timeframe === "monthly" ? "bg-indigo-500/20 text-indigo-300" : "text-slate-500 hover:text-slate-300",
             )}
           >
             Monthly
@@ -107,63 +103,47 @@ function ScoreTrendCard({ history }: { history: InterviewHistoryItem[] }) {
         </div>
       </div>
 
-      <div className="mt-8 flex h-[200px] items-end justify-between gap-4">
-        {completedSessions.map((session, index) => {
-          const score = session.overallScore || 0;
-          const isLast = index === completedSessions.length - 1;
-          const heightPct = (score / max) * 100;
+      <div className="mt-8 flex h-[220px] items-end justify-between gap-3 px-2">
+        {trend.map((val, idx) => {
+          const heightPct = Math.max(8, Math.round((val / max) * 100));
           return (
-            <div key={session._id} className="group relative flex flex-1 flex-col items-center gap-2">
-              {/* Tooltip */}
-              <div className={cn(
-                "absolute -top-9 left-1/2 -translate-x-1/2 rounded-lg px-2 py-1 text-[0.72rem] font-bold text-white shadow-md transition-opacity duration-200",
-                isLast ? "bg-indigo-600 opacity-100" : "bg-[var(--muted)] opacity-0 group-hover:opacity-100",
-              )}>
-                {score}
+            <div key={idx} className="group relative flex flex-1 flex-col items-center gap-2">
+              <div className="absolute -top-7 scale-75 opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="rounded bg-slate-950 px-2 py-0.5 text-[0.7rem] font-extrabold text-indigo-300 border border-indigo-500/20">
+                  {val}%
+                </span>
               </div>
-              <div className="w-full flex-1 flex items-end justify-center">
-                <div
-                  className={cn(
-                    "w-full rounded-t-[10px] transition-all duration-300",
-                    isLast
-                      ? "bg-gradient-to-t from-indigo-600 to-violet-600 shadow-md shadow-indigo-500/10"
-                      : "bg-[var(--brand-soft)] group-hover:opacity-80",
-                  )}
-                  style={{ height: `${heightPct}%` }}
-                />
-              </div>
-              <span className="text-[0.75rem] font-medium text-[var(--muted-soft)]">
-                S{index + 1}
-              </span>
+              <div
+                className="w-full rounded-t-lg bg-gradient-to-t from-indigo-600/30 to-indigo-500/80 group-hover:to-indigo-400 group-hover:shadow-[0_0_12px_rgba(99,102,241,0.3)] transition-all duration-300"
+                style={{ height: `${heightPct}%` }}
+              />
+              <span className="text-[0.62rem] font-bold text-slate-600">S{idx + 1}</span>
             </div>
           );
         })}
-        {completedSessions.length === 0 && (
-          <div className="w-full h-full flex items-center justify-center text-[var(--muted-soft)] text-[0.9rem] italic">
-            Complete an interview to see trends.
-          </div>
-        )}
       </div>
 
-      {/* Bottom stats */}
-      <div className="mt-5 flex items-center justify-between rounded-[14px] bg-[var(--surface-soft)] px-4 py-3 border border-[var(--line)]">
-        <div className="text-center">
-          <p className="text-[0.72rem] font-medium text-[var(--muted-soft)]">Average</p>
-          <p className="mt-0.5 text-[1rem] font-bold text-[var(--foreground)]">{avg}</p>
+      <div className="mt-6 flex flex-wrap gap-4 border-t border-slate-900 pt-5 text-[0.8rem]">
+        <div className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />
+          <span className="text-slate-400">Average:</span>
+          <span className="font-extrabold text-white">{avg}%</span>
         </div>
-        <div className="h-8 w-px bg-[var(--line)]" />
-        <div className="text-center">
-          <p className="text-[0.72rem] font-medium text-[var(--muted-soft)]">Best</p>
-          <p className="mt-0.5 text-[1rem] font-bold text-emerald-500">{best}</p>
+        <div className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+          <span className="text-slate-400">Best:</span>
+          <span className="font-extrabold text-white">{best}%</span>
         </div>
-        <div className="h-8 w-px bg-[var(--line)]" />
-        <div className="text-center">
-          <p className="text-[0.72rem] font-medium text-[var(--muted-soft)]">Trend</p>
-          <p className="mt-0.5 flex items-center gap-1 text-[1rem] font-bold text-emerald-500">
-            {trendDirection === "up" && <Icon name="trend-up" className="h-4 w-4" />}
-            {trendDirection === "down" && <Icon name="trend-up" className="h-4 w-4 rotate-180 text-rose-400" />}
-            <span className={cn(trendDirection === "down" && "text-rose-400")}>{trendPctText}</span>
-          </p>
+        <div className="ml-auto flex items-center gap-1">
+          <span className="text-slate-500">Direction:</span>
+          <span
+            className={cn(
+              "font-extrabold",
+              trendDirection === "up" ? "text-emerald-400" : trendDirection === "down" ? "text-rose-400" : "text-slate-400"
+            )}
+          >
+            {trendPctText}
+          </span>
         </div>
       </div>
     </Card>
@@ -171,105 +151,104 @@ function ScoreTrendCard({ history }: { history: InterviewHistoryItem[] }) {
 }
 
 function AIRecommendationCard({ history }: { history: InterviewHistoryItem[] }) {
-  // Find the first completed interview with recommendations
-  const lastWithRecs = history.find(
-    (s) => s.status === "completed" && s.recommendations && s.recommendations.length > 0
-  );
-
-  const recommendationText = lastWithRecs?.recommendations?.[0] ||
-    "Start practicing with our AI. Once you complete an interview, we will analyze your performance and show customized recommendations here!";
+  // Get last recommendation from completed sessions
+  const lastCompleted = history.find((s) => s.status === "completed" && s.recommendations?.length);
+  const rec = lastCompleted?.recommendations?.[0];
 
   return (
-    <Card className="border border-[var(--line)] bg-[var(--surface-soft)] p-6 shadow-none">
-      <div className="flex items-start gap-4">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-emerald-100/80 dark:bg-emerald-900/40">
-          <Icon name="sparkles" className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-        </div>
-        <div>
-          <p className="text-[0.78rem] font-bold uppercase tracking-[0.16em] text-emerald-600 dark:text-emerald-400">AI Insight</p>
-          <p className="mt-2 text-[0.9rem] leading-6 text-[var(--foreground)]">
-            {recommendationText}
+    <Card className="p-6 bg-[#090d16]/90 border border-slate-800/80 shadow-[0_4px_24px_rgba(99,102,241,0.04)]">
+      <div className="flex items-center gap-2">
+        <Icon name="sparkles" className="h-4.5 w-4.5 text-indigo-400 animate-pulse" />
+        <h2 className="text-[0.98rem] font-extrabold text-white">AI Recommendation</h2>
+      </div>
+      {rec ? (
+        <div className="mt-4 space-y-3">
+          <p className="text-[0.82rem] leading-6 text-slate-300 italic bg-slate-950/60 p-3 rounded-xl border border-slate-900">
+            &ldquo;{rec}&rdquo;
+          </p>
+          <p className="text-[0.72rem] text-indigo-400/80 font-bold">
+            Based on your last interview as {lastCompleted.role}.
           </p>
         </div>
-      </div>
+      ) : (
+        <div className="mt-4">
+          <p className="text-[0.82rem] leading-6 text-slate-500">
+            No recommendations yet. Complete an interview session with scoring to receive personalized AI recommendations.
+          </p>
+        </div>
+      )}
     </Card>
   );
 }
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const [history, setHistory] = useState<InterviewHistoryItem[]>([]);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [historyRes, statsRes] = await Promise.all([
+          api.get<{ history: InterviewHistoryItem[] }>("/interviews/history?limit=15"),
+          api.get<DashboardStats>("/interviews/stats"),
+        ]);
+        setHistory(historyRes.data.history || []);
+        setStats(statsRes.data);
+      } catch (err) {
+        setError(getApiErrorMessage(err, "Failed to load dashboard data"));
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  const totalInterviews = stats?.totalInterviews || 0;
+  const avgScore = stats?.averageInterviewScore ? Math.round(stats.averageInterviewScore) : 0;
+  const bestScore = history.length
+    ? Math.max(...history.map((s) => s.overallScore || 0))
+    : 0;
+
+  const recentActivity = history.slice(0, 3);
+
   const firstName = user?.firstName || "Alex";
-  const displayName = `${user?.firstName || "Alex"} ${user?.lastName || "Rivera"}`.trim();
-  const initials = displayName
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+  const initials = `${firstName[0]}${user?.lastName?.[0] || ""}`.toUpperCase();
+
+  const greeting = (() => {
+    const hr = new Date().getHours();
+    if (hr < 12) return "Good morning";
+    if (hr < 18) return "Good afternoon";
+    return "Good evening";
+  })();
+
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "short",
     day: "numeric",
-    year: "numeric",
   });
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
-
-  const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [history, setHistory] = useState<InterviewHistoryItem[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        const [statsRes, historyRes] = await Promise.all([
-          api.get("/analytics/dashboard"),
-          api.get("/analytics/history"),
-        ]);
-        setStats(statsRes.data.stats);
-        setHistory(historyRes.data.history || []);
-      } catch (err) {
-        setError(getApiErrorMessage(err, "Could not load dashboard statistics"));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDashboardData();
-  }, []);
-
-  // Compute stats helper values
-  const totalInterviews = stats?.totalInterviews ?? history.length;
-  const avgScore = stats?.averageInterviewScore ?? 0;
-
-  const completedScores = history
-    .filter((s) => s.status === "completed" && s.overallScore !== null)
-    .map((s) => s.overallScore as number);
-  const bestScore = completedScores.length ? Math.max(...completedScores) : 0;
-
-  const recentActivity = history.slice(0, 3);
 
   return (
     <AuthenticatedShell active="dashboard">
       {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)] px-6 py-4 shadow-[var(--shadow-xs)] md:px-8">
+      <div className="sticky top-0 z-20 border-b border-slate-900 bg-[#04060e]/80 px-6 py-4 backdrop-blur-md md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <div>
-            <h1 className="text-[1.3rem] font-bold tracking-tight text-[var(--foreground)]">
+            <h1 className="text-[1.25rem] font-extrabold tracking-tight text-white">
               {greeting}, {firstName} 👋
             </h1>
-            <p className="text-[0.78rem] text-[var(--muted-soft)]">{today}</p>
+            <p className="text-[0.78rem] text-slate-500">{today}</p>
           </div>
           <div className="flex items-center gap-2.5">
             {/* Search */}
-            <div className="hidden items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] px-3.5 py-2 text-[0.82rem] text-[var(--muted-soft)] md:flex md:min-w-[200px]">
+            <div className="hidden items-center gap-2 rounded-lg border border-slate-900 bg-slate-950 px-3 py-1.5 text-[0.8rem] text-slate-500 md:flex md:min-w-[180px]">
               <Icon name="search" className="h-3.5 w-3.5 shrink-0" />
-              <span>Search sessions…</span>
-              <kbd className="ml-auto rounded border border-[var(--line)] px-1.5 py-0.5 text-[0.65rem]">⌘K</kbd>
+              <span>Search...</span>
             </div>
             {/* Bell */}
-            <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--line)] bg-[var(--surface)] text-[var(--muted-soft)] transition hover:bg-[var(--surface-soft)] hover:text-[var(--muted)]">
+            <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-900 bg-slate-950 text-slate-500 transition hover:bg-slate-900 hover:text-white">
               <Icon name="bell" className="h-4 w-4" />
             </button>
             {/* Avatar */}
@@ -282,7 +261,7 @@ export default function DashboardPage() {
 
       <div className="mx-auto max-w-[1200px] px-6 py-8 md:px-8">
         {error && (
-          <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-[0.9rem] text-red-800">
+          <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-[0.88rem] text-red-400">
             {error}
           </div>
         )}
@@ -292,7 +271,7 @@ export default function DashboardPage() {
             {/* Stats Cards Skeletons */}
             <div className="grid gap-4 sm:grid-cols-3">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
+                <div key={i} className="rounded-2xl border border-slate-900 bg-[#090d16]/80 p-6 shadow-sm">
                   <div className="flex items-center justify-between">
                     <div className="h-4 w-28 skeleton" />
                     <div className="h-8 w-8 rounded-full skeleton" />
@@ -305,9 +284,8 @@ export default function DashboardPage() {
 
             {/* Main grid Skeletons */}
             <div className="grid gap-5 xl:grid-cols-[1.4fr_0.6fr]">
-              {/* Score Trend Card Skeleton */}
-              <div className="rounded-[28px] border border-slate-100 bg-white p-6 shadow-sm">
-                <div className="flex items-center justify-between border-b border-slate-50 pb-5">
+              <div className="rounded-2xl border border-slate-900 bg-[#090d16]/80 p-6 shadow-sm">
+                <div className="flex items-center justify-between border-b border-slate-900 pb-5">
                   <div>
                     <div className="h-5 w-36 skeleton" />
                     <div className="mt-2 h-3 w-48 skeleton" />
@@ -321,73 +299,43 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Right CTA & AI Recommendation Skeleton */}
               <div className="space-y-4">
-                <div className="rounded-[24px] border border-slate-100 bg-white p-6 shadow-sm">
+                <div className="rounded-2xl border border-slate-900 bg-[#090d16]/80 p-6 shadow-sm">
                   <div className="h-4 w-20 rounded-full skeleton" />
                   <div className="mt-3 h-14 w-full skeleton" />
                   <div className="mt-2 h-8 w-full skeleton" />
                   <div className="mt-5 h-10 w-full rounded-xl skeleton" />
                 </div>
-                <div className="rounded-[24px] border border-slate-100 bg-white p-6 shadow-sm">
-                  <div className="h-4 w-32 skeleton" />
-                  <div className="mt-3 h-12 w-full skeleton" />
-                </div>
-              </div>
-            </div>
-
-            {/* Table Skeleton */}
-            <div className="rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden">
-              <div className="border-b border-slate-100/80 px-6 py-5">
-                <div className="h-5 w-32 skeleton" />
-                <div className="mt-2 h-3.5 w-24 skeleton" />
-              </div>
-              <div className="p-6 space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex items-center justify-between py-2">
-                    <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-xl skeleton" />
-                      <div className="space-y-1.5">
-                        <div className="h-4 w-32 skeleton" />
-                        <div className="h-3.5 w-20 skeleton" />
-                      </div>
-                    </div>
-                    <div className="h-4 w-16 skeleton" />
-                    <div className="h-6 w-20 rounded-full skeleton" />
-                    <div className="h-9 w-20 rounded-xl skeleton" />
-                  </div>
-                ))}
               </div>
             </div>
           </div>
         ) : (
           <>
             {/* Stats */}
-            <div className="grid gap-4 sm:grid-cols-3 animate-fade-in-up">
-              <StatCard label="Total Interviews" value={String(totalInterviews)} icon="chart" note="All-time" accent="var(--brand-soft)" />
-              <StatCard label="Average Score" value={avgScore > 0 ? `${avgScore}/100` : "N/A"} icon="trend-up" note="Completed sessions" accent="var(--success-soft)" />
-              <StatCard label="Best Score" value={bestScore > 0 ? String(bestScore) : "N/A"} icon="medal" accent="var(--warning-soft)" />
+            <div className="grid gap-4 sm:grid-cols-3 animate-fade-up">
+              <StatCard label="Total Interviews" value={String(totalInterviews)} icon="chart" note="All-time" />
+              <StatCard label="Average Score" value={avgScore > 0 ? `${avgScore}%` : "N/A"} icon="trend-up" note="Completed" />
+              <StatCard label="Best Score" value={bestScore > 0 ? `${bestScore}%` : "N/A"} icon="medal" />
             </div>
 
             {/* Main grid */}
-            <div className="mt-6 grid gap-5 xl:grid-cols-[1.4fr_0.6fr] animate-fade-in-up delay-150">
+            <div className="mt-6 grid gap-5 xl:grid-cols-[1.4fr_0.6fr] animate-fade-up delay-100">
               <ScoreTrendCard history={history} />
 
               <div className="space-y-4">
                 {/* CTA card */}
-                <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#6366f1] via-[#4f46e5] to-[#4338ca] p-6 text-white shadow-[0_16px_40px_rgba(99,102,241,0.22)]">
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#6366f1] via-[#4338ca] to-[#312e81] p-6 text-white shadow-[0_16px_40px_rgba(99,102,241,0.22)] border border-indigo-500/20">
                   <div className="pointer-events-none absolute -top-8 -right-8 h-40 w-40 rounded-full bg-white/[0.07]" />
                   <div className="pointer-events-none absolute -bottom-6 -left-6 h-32 w-32 rounded-full bg-white/[0.05]" />
-                  <div className="pointer-events-none absolute top-1/2 right-1/4 -translate-y-1/2 h-24 w-24 rounded-full bg-white/[0.04]" />
                   <div className="relative">
-                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.15] px-2.5 py-1 text-[0.7rem] font-bold backdrop-blur-sm">
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.15] px-2.5 py-1 text-[0.65rem] font-extrabold uppercase tracking-wider backdrop-blur-sm">
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                      AI Ready
+                      AI Coach Active
                     </div>
-                    <h2 className="mt-3 text-[1.25rem] font-bold leading-tight">
+                    <h2 className="mt-3 text-[1.25rem] font-extrabold leading-tight">
                       Ready for the<br />next interview?
                     </h2>
-                    <p className="mt-2 text-[0.82rem] leading-5 text-white/70">
+                    <p className="mt-2 text-[0.8rem] leading-5 text-white/70">
                       Practice with AI tailored to your role and level.
                     </p>
                     <ButtonLink href="/interviews" variant="dark" className="mt-5 w-full justify-center py-2.5 text-[0.85rem] border border-white/20">
@@ -402,29 +350,29 @@ export default function DashboardPage() {
             </div>
 
             {/* Recent activity table */}
-            <Card className="mt-6 overflow-hidden animate-fade-in-up delay-300">
-              <div className="flex items-center justify-between border-b border-[var(--line)] px-6 py-5">
+            <Card className="mt-6 overflow-hidden border border-slate-900 bg-[#090d16]/90 shadow-[0_4px_24px_rgba(99,102,241,0.04)] animate-fade-up delay-200">
+              <div className="flex items-center justify-between border-b border-slate-900 px-6 py-5">
                 <div>
-                  <h2 className="text-[1rem] font-bold text-[var(--foreground)]">Recent Activity</h2>
-                  <p className="text-[0.78rem] text-[var(--muted-soft)]">Your last 3 sessions</p>
+                  <h2 className="text-[1rem] font-extrabold text-white">Recent Activity</h2>
+                  <p className="text-[0.78rem] text-slate-500">Your last 3 sessions</p>
                 </div>
-                <Link href="/history" className="text-[0.82rem] font-bold text-[var(--brand)] transition-opacity hover:opacity-75">
-                  View all →
+                <Link href="/history" className="text-[0.82rem] font-bold text-indigo-400 hover:opacity-75">
+                  View all &rarr;
                 </Link>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="min-w-full text-left">
                   <thead>
-                    <tr className="border-b border-[var(--line)] bg-[var(--surface-soft)]">
-                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Role</th>
-                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Date</th>
-                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Score</th>
-                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Status</th>
-                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Action</th>
+                    <tr className="border-b border-slate-900 bg-slate-950">
+                      <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.14em] text-slate-500">Role</th>
+                      <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.14em] text-slate-500">Date</th>
+                      <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.14em] text-slate-500">Score</th>
+                      <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.14em] text-slate-500">Status</th>
+                      <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.14em] text-slate-500">Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[var(--line)]">
+                  <tbody className="divide-y divide-slate-900">
                     {recentActivity.map((row) => {
                       const formattedDate = new Date(row.createdAt).toLocaleDateString("en-US", {
                         month: "short",
@@ -447,37 +395,37 @@ export default function DashboardPage() {
                             : "mint";
 
                       return (
-                        <tr key={row._id} className="transition-colors hover:bg-[var(--surface-soft)]">
-                          <td className="px-6 py-4">
+                        <tr key={row._id} className="transition-colors hover:bg-slate-950">
+                          <td className="px-5 py-4">
                             <div className="flex items-center gap-3">
-                              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-[var(--brand-soft)]">
-                                <Icon name="briefcase" className="h-4 w-4 text-[var(--brand)]" />
+                              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-indigo-500/20 bg-indigo-500/10">
+                                <Icon name="briefcase" className="h-4 w-4 text-indigo-400" />
                               </div>
-                              <span className="text-[0.9rem] font-bold text-[var(--foreground)]">{row.role}</span>
+                              <span className="text-[0.88rem] font-extrabold text-white">{row.role}</span>
                             </div>
                           </td>
-                          <td className="px-6 py-4 text-[0.88rem] text-[var(--muted)]">{formattedDate}</td>
-                          <td className="px-6 py-4">
+                          <td className="px-5 py-4 text-[0.82rem] text-slate-400">{formattedDate}</td>
+                          <td className="px-5 py-4">
                             {row.overallScore !== null ? (
-                              <div className="flex items-center gap-2">
-                                <div className="h-1.5 w-14 overflow-hidden rounded-full bg-[var(--line)]">
+                              <div className="flex items-center gap-2.5">
+                                <div className="h-1.5 w-14 overflow-hidden rounded-full bg-slate-950">
                                   <div
-                                    className="h-full rounded-full bg-emerald-500"
+                                    className="h-full rounded-full bg-indigo-400 shadow-[0_0_8px_rgba(99,102,241,0.5)]"
                                     style={{ width: `${row.overallScore}%` }}
                                   />
                                 </div>
-                                <span className="text-[0.88rem] font-bold text-emerald-500">{row.overallScore}%</span>
+                                <span className="text-[0.82rem] font-bold text-indigo-300">{row.overallScore}%</span>
                               </div>
                             ) : (
-                              <span className="text-[0.88rem] text-[var(--muted-soft)] font-medium">N/A</span>
+                              <span className="text-[0.82rem] text-slate-500 font-medium">N/A</span>
                             )}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-5 py-4">
                             <Badge tone={tone}>
                               {statusLabel}
                             </Badge>
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-5 py-4">
                             <ButtonLink
                               href={
                                 row.status === "in_progress"
@@ -485,7 +433,7 @@ export default function DashboardPage() {
                                   : `/interviews/results?interviewId=${row._id}`
                               }
                               variant="outline"
-                              className="px-4 py-1.5 text-[0.82rem]"
+                              className="px-3.5 py-1.5 text-[0.78rem] border border-slate-800 text-indigo-300 hover:bg-indigo-500/10 hover:border-indigo-500/25"
                             >
                               {row.status === "in_progress" ? "Resume" : "View"}
                               <Icon name="arrow-right" className="h-3.5 w-3.5" />
@@ -496,7 +444,7 @@ export default function DashboardPage() {
                     })}
                     {recentActivity.length === 0 && (
                       <tr>
-                        <td colSpan={5} className="px-6 py-8 text-center text-[var(--muted-soft)] text-[0.92rem]">
+                        <td colSpan={5} className="px-6 py-8 text-center text-slate-500 text-[0.88rem]">
                           No interview activities found. Start practicing to see your sessions!
                         </td>
                       </tr>
@@ -510,12 +458,13 @@ export default function DashboardPage() {
       </div>
 
       <FooterLinks
-        left={<span>© 2026 InterviewAI · Professional AI Recruitment</span>}
+        className="border-slate-900 bg-[#02040a]"
+        left={<span className="text-[0.75rem] text-slate-500">&copy; 2026 InterviewAI &middot; Career Intelligence Platform</span>}
         right={
           <>
-            <Link href="#privacy" className="transition-colors hover:text-indigo-600">Privacy</Link>
-            <Link href="#terms" className="transition-colors hover:text-indigo-600">Terms</Link>
-            <Link href="#support" className="transition-colors hover:text-indigo-600">Support</Link>
+            <Link href="#privacy" className="transition-colors text-slate-500 hover:text-indigo-400">Privacy</Link>
+            <Link href="#terms" className="transition-colors text-slate-500 hover:text-indigo-400">Terms</Link>
+            <Link href="#support" className="transition-colors text-slate-500 hover:text-indigo-400">Support</Link>
           </>
         }
       />
