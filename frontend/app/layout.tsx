@@ -29,6 +29,16 @@ export const metadata: Metadata = {
     "The most realistic AI-powered interview prep platform. Practice with personalized mock interviews, get instant feedback, and land your dream job.",
   keywords: ["interview prep", "AI interview", "mock interview", "career coaching"],
   authors: [{ name: "InterviewAI" }],
+  icons: {
+    icon: [
+      {
+        url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%234f46e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M30 14a2 2 0 0 1-2 2H10l-4 4V8a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2z' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14 17v3' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M20 15v7' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M26 18v2' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E",
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

@@ -16,11 +16,53 @@ type SignupFormState = {
 };
 
 const features = [
-  "5 mock interviews free, no credit card",
-  "AI feedback in under 10 seconds",
+  "5 mock interviews free",
+  "AI feedback in 10 sec",
   "Role-tailored questions",
   "Cancel anytime",
 ];
+
+function InputRow({
+  type = "text",
+  placeholder,
+  name,
+  autoComplete,
+  required,
+  disabled,
+  value,
+  onChange,
+  icon,
+  rightSlot,
+}: {
+  type?: string;
+  placeholder: string;
+  name: string;
+  autoComplete?: string;
+  required?: boolean;
+  disabled?: boolean;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  icon: string;
+  rightSlot?: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-center gap-2.5 rounded-[14px] bg-[#f4f3ff] px-4 py-3.5 ring-1 ring-[#e8e6f0] transition-all duration-200 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#6366f1]/40 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.07)]">
+      <Icon name={icon} className="h-[17px] w-[17px] shrink-0 text-[#a5b4fc]" />
+      <input
+        type={type}
+        placeholder={placeholder}
+        name={name}
+        autoComplete={autoComplete}
+        required={required}
+        disabled={disabled}
+        value={value}
+        onChange={onChange}
+        className="w-full bg-transparent text-[0.93rem] font-medium text-[#1a1d2e] placeholder:font-normal placeholder:text-[#a5b4c8] outline-none disabled:cursor-not-allowed disabled:opacity-60"
+      />
+      {rightSlot}
+    </div>
+  );
+}
 
 function SignupContent() {
   const router = useRouter();
@@ -65,36 +107,43 @@ function SignupContent() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f5f6fb]">
-      {/* Background blobs */}
+    <div className="relative min-h-screen overflow-hidden" style={{ background: "linear-gradient(160deg, #faf9ff 0%, #f0eefb 50%, #faf9ff 100%)" }}>
+      {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-48 -right-48 h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.1),transparent_65%)]" />
-        <div className="absolute -bottom-40 -left-40 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.07),transparent_65%)]" />
+        <div className="animate-blob absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full" style={{ background: "radial-gradient(circle, rgba(99,102,241,0.09) 0%, transparent 68%)" }} />
+        <div className="animate-blob delay-300 absolute -bottom-32 -left-32 h-[520px] w-[520px] rounded-full" style={{ background: "radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 68%)" }} />
       </div>
 
       {/* Header */}
       <header className="relative z-10 mx-auto max-w-7xl px-6 py-5 md:px-8">
-        <BrandMark />
+        <div className="flex items-center justify-between">
+          <BrandMark />
+          <Link href="/login" className="text-[0.88rem] font-semibold text-[#64748b] transition-colors hover:text-[#6366f1]">
+            Sign in →
+          </Link>
+        </div>
       </header>
 
       {/* Main */}
       <main className="relative z-10 flex min-h-[calc(100vh-5rem)] items-center justify-center px-6 py-10">
-        <div className="w-full max-w-[560px] animate-fade-in-up">
+        <div className="w-full max-w-[500px] animate-fade-in-up">
+
           {/* Card */}
-          <div className="rounded-[28px] bg-white p-8 shadow-[0_8px_32px_rgba(13,15,26,0.08),0_1px_2px_rgba(13,15,26,0.04)] ring-1 ring-slate-200/60 sm:p-10">
-            {/* Header */}
+          <div className="rounded-[28px] bg-white/90 p-8 shadow-[0_20px_60px_rgba(99,102,241,0.10),0_4px_16px_rgba(99,102,241,0.06)] ring-1 ring-[#e8e6f0] backdrop-blur-sm sm:p-10">
+
+            {/* Icon + header */}
             <div className="text-center">
-              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,#6366f1,#4f46e5)] shadow-[0_8px_20px_rgba(99,102,241,0.35)]">
+              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-[18px] bg-gradient-to-br from-[#6366f1] to-[#4f46e5] shadow-[0_10px_28px_rgba(99,102,241,0.32)]">
                 <Icon name="sparkles" className="h-7 w-7 text-white" />
               </div>
-              <h1 className="text-[1.9rem] font-bold tracking-tight text-[#0d0f1a]">Create your account</h1>
-              <p className="mt-2 text-[0.92rem] text-[#6b7280]">Join 5,000+ professionals leveling up with AI</p>
+              <h1 className="text-[1.8rem] font-bold tracking-tight text-[#0f172a]">Create your account</h1>
+              <p className="mt-2 text-[0.88rem] text-[#64748b]">Join 5,000+ professionals leveling up with AI</p>
             </div>
 
             {/* Feature pills */}
             <div className="mt-5 flex flex-wrap justify-center gap-2">
               {features.map((f) => (
-                <span key={f} className="inline-flex items-center gap-1.5 rounded-full bg-[#f0fdf4] px-3 py-1 text-[0.72rem] font-semibold text-[#059669]">
+                <span key={f} className="inline-flex items-center gap-1.5 rounded-full bg-[#f0fdf4] px-2.5 py-1 text-[0.7rem] font-semibold text-emerald-600">
                   <svg className="h-3 w-3" viewBox="0 0 12 12" fill="currentColor">
                     <path d="M10.28 2.28 3.989 8.575 1.695 6.28A1 1 0 0 0 .28 7.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 2.28Z"/>
                   </svg>
@@ -106,98 +155,86 @@ function SignupContent() {
             <form className="mt-7 space-y-4" onSubmit={handleSubmit}>
               {/* Error */}
               {error ? (
-                <div className="flex items-start gap-3 rounded-[14px] border border-red-200 bg-red-50 px-4 py-3" role="alert">
-                  <div className="mt-0.5 h-4 w-4 shrink-0 text-red-500">
-                    <svg viewBox="0 0 16 16" fill="currentColor">
-                      <path fillRule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-3.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4.5Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-                    </svg>
+                <div className="flex items-center gap-3 rounded-[14px] border border-red-200/80 bg-red-50 px-4 py-3" role="alert">
+                  <div className="h-4 w-4 shrink-0 text-red-500 flex-none">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path fillRule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-3.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4.5Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" /></svg>
                   </div>
-                  <p className="text-[0.875rem] text-red-700">{error}</p>
+                  <p className="text-[0.85rem] text-red-700">{error}</p>
                 </div>
               ) : null}
 
               {/* Name row */}
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <label className="block text-[0.82rem] font-semibold text-[#374151]">First name</label>
-                  <div className="flex items-center gap-3 rounded-[14px] bg-[#f8f9fc] px-4 py-3.5 ring-1 ring-[#e5e7eb] transition-all duration-200 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#6366f1]/50 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.08)]">
-                    <Icon name="user" className="h-[18px] w-[18px] shrink-0 text-[#9ca3af]" />
-                    <input
-                      type="text"
-                      placeholder="Alex"
-                      name="firstName"
-                      autoComplete="given-name"
-                      required
-                      disabled={submitting}
-                      value={form.firstName}
-                      onChange={handleChange("firstName")}
-                      className="w-full bg-transparent text-[0.95rem] font-medium text-[#1a1d2e] placeholder:font-normal placeholder:text-[#9ca3af] outline-none disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
+                  <label className="block text-[0.8rem] font-semibold text-[#374151]">First name</label>
+                  <InputRow
+                    type="text"
+                    placeholder="Alex"
+                    name="firstName"
+                    autoComplete="given-name"
+                    required
+                    disabled={submitting}
+                    value={form.firstName}
+                    onChange={handleChange("firstName")}
+                    icon="user"
+                  />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="block text-[0.82rem] font-semibold text-[#374151]">Last name</label>
-                  <div className="flex items-center gap-3 rounded-[14px] bg-[#f8f9fc] px-4 py-3.5 ring-1 ring-[#e5e7eb] transition-all duration-200 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#6366f1]/50 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.08)]">
-                    <Icon name="user" className="h-[18px] w-[18px] shrink-0 text-[#9ca3af]" />
-                    <input
-                      type="text"
-                      placeholder="Rivera"
-                      name="lastName"
-                      autoComplete="family-name"
-                      required
-                      disabled={submitting}
-                      value={form.lastName}
-                      onChange={handleChange("lastName")}
-                      className="w-full bg-transparent text-[0.95rem] font-medium text-[#1a1d2e] placeholder:font-normal placeholder:text-[#9ca3af] outline-none disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
+                  <label className="block text-[0.8rem] font-semibold text-[#374151]">Last name</label>
+                  <InputRow
+                    type="text"
+                    placeholder="Rivera"
+                    name="lastName"
+                    autoComplete="family-name"
+                    required
+                    disabled={submitting}
+                    value={form.lastName}
+                    onChange={handleChange("lastName")}
+                    icon="user"
+                  />
                 </div>
               </div>
 
               {/* Email */}
               <div className="space-y-1.5">
-                <label className="block text-[0.82rem] font-semibold text-[#374151]">Work email</label>
-                <div className="flex items-center gap-3 rounded-[14px] bg-[#f8f9fc] px-4 py-3.5 ring-1 ring-[#e5e7eb] transition-all duration-200 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#6366f1]/50 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.08)]">
-                  <Icon name="mail" className="h-[18px] w-[18px] shrink-0 text-[#9ca3af]" />
-                  <input
-                    type="email"
-                    placeholder="name@company.com"
-                    name="email"
-                    autoComplete="email"
-                    required
-                    disabled={submitting}
-                    value={form.email}
-                    onChange={handleChange("email")}
-                    className="w-full bg-transparent text-[0.95rem] font-medium text-[#1a1d2e] placeholder:font-normal placeholder:text-[#9ca3af] outline-none disabled:cursor-not-allowed disabled:opacity-60"
-                  />
-                </div>
+                <label className="block text-[0.8rem] font-semibold text-[#374151]">Work email</label>
+                <InputRow
+                  type="email"
+                  placeholder="name@company.com"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  disabled={submitting}
+                  value={form.email}
+                  onChange={handleChange("email")}
+                  icon="mail"
+                />
               </div>
 
               {/* Password */}
               <div className="space-y-1.5">
-                <label className="block text-[0.82rem] font-semibold text-[#374151]">Password</label>
-                <div className="flex items-center gap-3 rounded-[14px] bg-[#f8f9fc] px-4 py-3.5 ring-1 ring-[#e5e7eb] transition-all duration-200 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#6366f1]/50 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.08)]">
-                  <Icon name="lock" className="h-[18px] w-[18px] shrink-0 text-[#9ca3af]" />
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="At least 8 characters"
-                    name="password"
-                    autoComplete="new-password"
-                    required
-                    disabled={submitting}
-                    value={form.password}
-                    onChange={handleChange("password")}
-                    className="w-full bg-transparent text-[0.95rem] font-medium text-[#1a1d2e] placeholder:font-normal placeholder:text-[#9ca3af] outline-none disabled:cursor-not-allowed disabled:opacity-60"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="shrink-0 text-[#9ca3af] transition-colors hover:text-[#6b7280]"
-                    tabIndex={-1}
-                  >
-                    <Icon name="eye" className="h-[18px] w-[18px]" />
-                  </button>
-                </div>
+                <label className="block text-[0.8rem] font-semibold text-[#374151]">Password</label>
+                <InputRow
+                  type={showPassword ? "text" : "password"}
+                  placeholder="At least 8 characters"
+                  name="password"
+                  autoComplete="new-password"
+                  required
+                  disabled={submitting}
+                  value={form.password}
+                  onChange={handleChange("password")}
+                  icon="lock"
+                  rightSlot={
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="shrink-0 text-[#a5b4c8] transition-colors hover:text-[#6366f1]"
+                      tabIndex={-1}
+                    >
+                      <Icon name="eye" className="h-[17px] w-[17px]" />
+                    </button>
+                  }
+                />
               </div>
 
               {/* Submit */}
@@ -205,7 +242,7 @@ function SignupContent() {
                 id="signup-submit"
                 type="submit"
                 disabled={submitting}
-                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#6366f1,#4f46e5)] px-5 py-3.5 text-[0.95rem] font-semibold text-white shadow-[0_8px_20px_rgba(79,70,229,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(79,70,229,0.38)] disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none"
+                className="btn-shine mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#6366f1] to-[#4f46e5] px-5 py-3.5 text-[0.93rem] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.26)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(79,70,229,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none"
               >
                 {submitting ? (
                   <>
@@ -213,7 +250,7 @@ function SignupContent() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                     </svg>
-                    Creating account...
+                    Creating account…
                   </>
                 ) : (
                   <>
@@ -225,15 +262,15 @@ function SignupContent() {
 
               {/* Divider */}
               <div className="flex items-center gap-3">
-                <div className="h-px flex-1 bg-[#e5e7eb]" />
-                <span className="text-[0.8rem] font-medium text-[#9ca3af]">or</span>
-                <div className="h-px flex-1 bg-[#e5e7eb]" />
+                <div className="h-px flex-1 bg-[#e8e6f0]" />
+                <span className="text-[0.78rem] font-medium text-[#a5b4c8]">or</span>
+                <div className="h-px flex-1 bg-[#e8e6f0]" />
               </div>
 
               {/* Google */}
               <button
                 type="button"
-                className="flex w-full items-center justify-center gap-3 rounded-full border border-[#e5e7eb] bg-white px-5 py-3.5 text-[0.92rem] font-semibold text-[#374151] shadow-[0_1px_3px_rgba(13,15,26,0.06)] transition-all duration-200 hover:bg-slate-50 hover:border-[#d1d5db]"
+                className="flex w-full items-center justify-center gap-3 rounded-full border border-[#e8e6f0] bg-white px-5 py-3.5 text-[0.9rem] font-semibold text-[#374151] shadow-[0_1px_4px_rgba(99,102,241,0.06)] transition-all duration-200 hover:bg-[#faf9ff] hover:border-[#c4b5fd]/60 hover:shadow-[0_2px_8px_rgba(99,102,241,0.08)]"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -244,10 +281,10 @@ function SignupContent() {
                 Continue with Google
               </button>
 
-              {/* Log in link */}
-              <p className="text-center text-[0.88rem] text-[#6b7280]">
+              {/* Login link */}
+              <p className="text-center text-[0.85rem] text-[#64748b]">
                 Already have an account?{" "}
-                <Link href="/login" className="font-semibold text-[#4f46e5] transition-opacity hover:opacity-75">
+                <Link href="/login" className="font-bold text-[#6366f1] transition-opacity hover:opacity-70">
                   Sign in
                 </Link>
               </p>
@@ -255,11 +292,11 @@ function SignupContent() {
           </div>
 
           {/* Legal */}
-          <p className="mt-5 text-center text-[0.78rem] leading-6 text-[#9ca3af]">
+          <p className="mt-5 text-center text-[0.75rem] leading-6 text-[#94a3b8]">
             By creating an account, you agree to InterviewAI&apos;s{" "}
-            <Link href="#terms" className="underline underline-offset-2 transition-colors hover:text-[#4f46e5]">Terms of Service</Link>{" "}
+            <Link href="#terms" className="underline underline-offset-2 transition-colors hover:text-[#6366f1]">Terms of Service</Link>{" "}
             and{" "}
-            <Link href="#privacy" className="underline underline-offset-2 transition-colors hover:text-[#4f46e5]">Privacy Policy</Link>.
+            <Link href="#privacy" className="underline underline-offset-2 transition-colors hover:text-[#6366f1]">Privacy Policy</Link>.
           </p>
         </div>
       </main>
@@ -270,8 +307,11 @@ function SignupContent() {
 export default function SignupPage() {
   return (
     <Suspense fallback={
-      <div className="relative min-h-screen overflow-hidden bg-[#f5f6fb] flex items-center justify-center">
-        <div className="text-slate-400 font-semibold tracking-wider">LOADING...</div>
+      <div className="relative min-h-screen overflow-hidden flex items-center justify-center" style={{ background: "linear-gradient(160deg, #faf9ff 0%, #f0eefb 50%, #faf9ff 100%)" }}>
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-10 w-10 rounded-[14px] bg-gradient-to-br from-[#6366f1] to-[#4f46e5] animate-pulse" />
+          <p className="text-[0.8rem] font-semibold text-[#94a3b8] tracking-widest uppercase">Loading…</p>
+        </div>
       </div>
     }>
       <SignupContent />

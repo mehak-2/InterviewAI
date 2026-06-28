@@ -253,27 +253,27 @@ export default function DashboardPage() {
   return (
     <AuthenticatedShell active="dashboard">
       {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)]/80 px-6 py-4 backdrop-blur-md md:px-8">
+      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)]/90 px-6 py-4 backdrop-blur-xl md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <div>
-            <h1 className="text-[1.4rem] font-bold tracking-tight text-[var(--foreground)]">
+            <h1 className="text-[1.35rem] font-bold tracking-tight text-[var(--foreground)]">
               {greeting}, {firstName} 👋
             </h1>
-            <p className="text-[0.82rem] text-[var(--muted-soft)]">{today}</p>
+            <p className="text-[0.8rem] text-[var(--muted-soft)]">{today}</p>
           </div>
           <div className="flex items-center gap-3">
             {/* Search */}
-            <div className="hidden items-center gap-2.5 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2.5 text-[0.88rem] text-[var(--muted-soft)] shadow-sm md:flex md:min-w-[220px]">
-              <Icon name="search" className="h-4 w-4 shrink-0" />
+            <div className="hidden items-center gap-2.5 rounded-full border border-[var(--line)] bg-[var(--surface-soft)] px-4 py-2.5 text-[0.85rem] text-[var(--muted-soft)] md:flex md:min-w-[220px]">
+              <Icon name="search" className="h-4 w-4 shrink-0 text-[var(--brand-mid)]" />
               <span>Search sessions…</span>
-              <span className="ml-auto rounded-md border border-[var(--line)] px-1.5 py-0.5 text-[0.7rem] text-[var(--muted-soft)]">⌘K</span>
+              <span className="ml-auto rounded-md border border-[var(--line)] px-1.5 py-0.5 text-[0.68rem] text-[var(--muted-soft)]">⌘K</span>
             </div>
             {/* Bell */}
-            <button className="relative flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--muted)] shadow-sm transition hover:bg-[var(--surface-soft)]">
-              <Icon name="bell" className="h-5 w-5" />
+            <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--muted-soft)] shadow-[var(--shadow-xs)] transition hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand)] hover:border-[var(--brand-mid)]/40">
+              <Icon name="bell" className="h-4.5 w-4.5" />
             </button>
             {/* Avatar */}
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-100 to-violet-200 dark:from-indigo-900/60 dark:to-violet-900/60 text-[0.72rem] font-bold text-indigo-600 dark:text-indigo-300">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#6366f1] to-[#4f46e5] text-[0.7rem] font-bold text-white shadow-[0_4px_10px_rgba(99,102,241,0.30)]">
               {initials}
             </div>
           </div>
@@ -375,21 +375,22 @@ export default function DashboardPage() {
 
               <div className="space-y-4">
                 {/* CTA card */}
-                <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-indigo-600 to-violet-700 p-6 text-white shadow-xl shadow-indigo-500/10">
-                  <div className="pointer-events-none absolute -top-8 -right-8 h-40 w-40 rounded-full bg-white/[0.06]" />
-                  <div className="pointer-events-none absolute -bottom-6 -left-6 h-32 w-32 rounded-full bg-white/[0.04]" />
+                <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#6366f1] via-[#4f46e5] to-[#4338ca] p-6 text-white shadow-[0_16px_40px_rgba(99,102,241,0.22)]">
+                  <div className="pointer-events-none absolute -top-8 -right-8 h-40 w-40 rounded-full bg-white/[0.07]" />
+                  <div className="pointer-events-none absolute -bottom-6 -left-6 h-32 w-32 rounded-full bg-white/[0.05]" />
+                  <div className="pointer-events-none absolute top-1/2 right-1/4 -translate-y-1/2 h-24 w-24 rounded-full bg-white/[0.04]" />
                   <div className="relative">
-                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[0.72rem] font-bold">
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.15] px-2.5 py-1 text-[0.7rem] font-bold backdrop-blur-sm">
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                       AI Ready
                     </div>
-                    <h2 className="mt-3 text-[1.3rem] font-bold leading-tight">
+                    <h2 className="mt-3 text-[1.25rem] font-bold leading-tight">
                       Ready for the<br />next interview?
                     </h2>
-                    <p className="mt-2 text-[0.85rem] leading-6 text-white/75">
-                      Practice with our AI tailored to your role and level.
+                    <p className="mt-2 text-[0.82rem] leading-5 text-white/70">
+                      Practice with AI tailored to your role and level.
                     </p>
-                    <ButtonLink href="/interviews" variant="dark" className="mt-5 w-full justify-center py-2.5 text-[0.88rem]">
+                    <ButtonLink href="/interviews" variant="dark" className="mt-5 w-full justify-center py-2.5 text-[0.85rem] border border-white/20">
                       Start New Interview
                       <Icon name="arrow-right" className="h-4 w-4" />
                     </ButtonLink>
@@ -415,12 +416,12 @@ export default function DashboardPage() {
               <div className="overflow-x-auto">
                 <table className="min-w-full text-left">
                   <thead>
-                    <tr className="border-b border-[var(--line)] bg-[var(--surface-soft)]">
-                      <th className="px-6 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[var(--muted-soft)]">Role</th>
-                      <th className="px-6 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[var(--muted-soft)]">Date</th>
-                      <th className="px-6 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[var(--muted-soft)]">Score</th>
-                      <th className="px-6 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[var(--muted-soft)]">Status</th>
-                      <th className="px-6 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[var(--muted-soft)]">Action</th>
+                    <tr className="border-b border-[var(--line)] bg-[var(--brand-xsoft)]">
+                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Role</th>
+                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Date</th>
+                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Score</th>
+                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Status</th>
+                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[var(--line)]">

@@ -362,16 +362,16 @@ export function Badge({
   className?: string;
 }) {
   const tones = {
-    violet: "bg-indigo-50 text-indigo-600 ring-indigo-200/50 dark:bg-indigo-900/40 dark:text-indigo-300 dark:ring-indigo-700/50",
+    violet: "bg-[#ede9fe] text-[#4f46e5] ring-[#c4b5fd]/40 dark:bg-indigo-900/40 dark:text-indigo-300 dark:ring-indigo-700/50",
     mint:   "bg-emerald-50 text-emerald-600 ring-emerald-200/50 dark:bg-emerald-900/40 dark:text-emerald-300 dark:ring-emerald-700/50",
-    slate:  "bg-slate-50 text-slate-600 ring-slate-200/50 dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-600/50",
-    dark:   "bg-slate-900 text-white ring-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:ring-slate-200",
-    amber:  "bg-amber-50 text-amber-600 ring-amber-200/50 dark:bg-amber-900/40 dark:text-amber-300 dark:ring-amber-700/50",
+    slate:  "bg-[var(--surface-soft)] text-[var(--muted)] ring-[var(--line)] dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-600/50",
+    dark:   "bg-[#0f172a] text-white ring-[#1e293b] dark:bg-slate-100 dark:text-slate-900 dark:ring-slate-200",
+    amber:  "bg-amber-50 text-amber-700 ring-amber-200/60 dark:bg-amber-900/40 dark:text-amber-300 dark:ring-amber-700/50",
   };
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.2em] ring-1",
+        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] ring-1",
         tones[tone],
         className,
       )}
@@ -393,7 +393,7 @@ export function Card({
     <div
       className={cn(
         "rounded-[24px] bg-[var(--surface)] border border-[var(--line)]",
-        "shadow-[0_8px_30px_rgb(0,0,0,0.04),0_1px_2px_rgb(0,0,0,0.02)]",
+        "shadow-[0_4px_20px_rgba(99,102,241,0.06),0_1px_3px_rgba(99,102,241,0.04)]",
         className,
       )}
     >
@@ -416,15 +416,15 @@ export function ButtonLink({
 }) {
   const styles = {
     primary:
-      "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-[0_8px_20px_rgba(79,70,229,0.15)] hover:shadow-[0_12px_28px_rgba(79,70,229,0.25)] hover:-translate-y-0.5 active:translate-y-0",
+      "btn-shine bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white shadow-[0_8px_24px_rgba(79,70,229,0.22)] hover:shadow-[0_12px_32px_rgba(79,70,229,0.32)] hover:-translate-y-0.5 active:translate-y-0",
     secondary:
-      "bg-[var(--surface)] text-[var(--foreground)] ring-1 ring-[var(--line)] shadow-sm hover:bg-[var(--surface-soft)] hover:ring-[var(--line)]",
+      "bg-[var(--surface)] text-[var(--foreground)] ring-1 ring-[var(--line)] shadow-[var(--shadow-sm)] hover:bg-[var(--surface-soft)] hover:shadow-[var(--shadow-md)]",
     ghost:
-      "bg-transparent text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]",
+      "bg-transparent text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand)]",
     dark:
-      "bg-white/10 text-white ring-1 ring-white/15 hover:bg-white/20 backdrop-blur-sm",
+      "bg-white/12 text-white ring-1 ring-white/18 hover:bg-white/22 backdrop-blur-sm",
     outline:
-      "bg-transparent text-[var(--brand)] ring-1 ring-[var(--brand-mid)] hover:bg-[var(--brand-soft)] hover:ring-[var(--brand)]",
+      "bg-transparent text-[var(--brand)] ring-1 ring-[var(--brand-mid)]/60 hover:bg-[var(--brand-soft)] hover:ring-[var(--brand)]",
   };
   return (
     <Link
@@ -608,24 +608,24 @@ export function StatCard({
   className?: string;
 }) {
   return (
-    <Card className={cn("p-6", className)}>
+    <Card className={cn("p-6 card-hover", className)}>
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-4">
           <div
-            className="inline-flex h-14 w-14 items-center justify-center rounded-[16px]"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-[14px] ring-1 ring-black/[0.04]"
             style={{ backgroundColor: accent ?? "var(--brand-soft)" }}
           >
-            <Icon name={icon} className="h-6 w-6 text-[var(--foreground)]" />
+            <Icon name={icon} className="h-5.5 w-5.5" style={{ color: "var(--brand-strong)" }} />
           </div>
           <div>
-            <p className="text-[0.85rem] font-medium text-[var(--muted)]">{label}</p>
-            <div className="mt-1.5 text-[2.2rem] font-bold leading-none tracking-tight text-[var(--foreground)]">{value}</div>
+            <p className="text-[0.82rem] font-medium text-[var(--muted-soft)]">{label}</p>
+            <div className="mt-1 text-[2rem] font-bold leading-none tracking-tight text-[var(--foreground)]">{value}</div>
           </div>
         </div>
         {note ? (
-          <div className="rounded-full bg-[var(--success-soft)] px-2.5 py-1 text-[0.78rem] font-semibold text-[var(--success)]">
+          <span className="rounded-full bg-[var(--brand-soft)] px-2.5 py-1 text-[0.72rem] font-bold text-[var(--brand)]">
             {note}
-          </div>
+          </span>
         ) : null}
       </div>
     </Card>
@@ -645,15 +645,15 @@ export function Avatar({
   className?: string;
 }) {
   const colors = {
-    violet: "bg-[linear-gradient(135deg,#ede9fe,#c4b5fd)] text-[#4f46e5] dark:bg-[linear-gradient(135deg,#312e81,#4338ca)] dark:text-[#a5b4fc]",
-    mint:   "bg-[linear-gradient(135deg,#d1fae5,#6ee7b7)] text-[#059669] dark:bg-[linear-gradient(135deg,#064e3b,#065f46)] dark:text-[#6ee7b7]",
+    violet: "bg-[linear-gradient(135deg,#ede9fe,#c4b5fd)] text-[#4338ca] dark:bg-[linear-gradient(135deg,#312e81,#4338ca)] dark:text-[#a5b4fc]",
+    mint:   "bg-[linear-gradient(135deg,#d1fae5,#6ee7b7)] text-[#047857] dark:bg-[linear-gradient(135deg,#064e3b,#065f46)] dark:text-[#6ee7b7]",
     rose:   "bg-[linear-gradient(135deg,#fce7f3,#f9a8d4)] text-[#be185d] dark:bg-[linear-gradient(135deg,#5c1d3d,#831843)] dark:text-[#fbcfe8]",
     indigo: "bg-[linear-gradient(135deg,#e0e7ff,#a5b4fc)] text-[#3730a3] dark:bg-[linear-gradient(135deg,#1e1b4b,#312e81)] dark:text-[#a5b4fc]",
     slate:  "bg-[linear-gradient(135deg,#f1f5f9,#cbd5e1)] text-[#475569] dark:bg-[linear-gradient(135deg,#1e293b,#334155)] dark:text-[#94a3b8]",
   };
   return (
     <div
-      className={cn("grid shrink-0 place-items-center rounded-full font-bold", colors[tone], className)}
+      className={cn("grid shrink-0 place-items-center rounded-full font-bold ring-2 ring-white dark:ring-[var(--surface)]", colors[tone], className)}
       style={{ width: size, height: size, fontSize: size * 0.34 }}
     >
       {name
@@ -686,24 +686,24 @@ export function SidebarShell({
   ] as const;
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
-      <div className="mx-auto grid min-h-screen w-full max-w-[1640px] lg:grid-cols-[280px_minmax(0,1fr)]">
+    <div className="min-h-screen bg-[var(--background)] mesh-bg">
+      <div className="mx-auto grid min-h-screen w-full max-w-[1640px] lg:grid-cols-[272px_minmax(0,1fr)]">
         {/* Sidebar */}
-        <aside className="border-b border-[var(--line)] bg-[var(--surface)] px-5 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
-          <div className="flex h-full flex-col gap-6">
+        <aside className="border-b border-[var(--line)] glass-sidebar px-4 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
+          <div className="flex h-full flex-col gap-5">
             {/* Logo */}
-            <div className="px-2">
+            <div className="px-2 pb-1">
               <BrandMark />
             </div>
 
-            {topSlot ? <div className="space-y-3">{topSlot}</div> : null}
+            {topSlot ? <div className="space-y-2">{topSlot}</div> : null}
 
             {/* Divider */}
             <div className="h-px bg-[var(--line)]" />
 
             {/* Nav */}
-            <nav className="space-y-1.5">
-              <p className="mb-2 px-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-soft)]">
+            <nav className="space-y-1">
+              <p className="mb-3 px-3 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[var(--muted-soft)]">
                 Navigation
               </p>
               {items.map((item) => {
@@ -713,22 +713,29 @@ export function SidebarShell({
                     key={item.key}
                     href={item.href}
                     className={cn(
-                      "group flex items-center gap-3.5 rounded-[16px] px-3.5 py-3 text-[0.9rem] font-semibold transition-all duration-200",
+                      "group flex items-center gap-3 rounded-[14px] px-3.5 py-2.5 text-[0.875rem] font-semibold transition-all duration-200",
                       selected
-                        ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/10"
-                        : "text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]",
+                        ? "bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white nav-active-glow"
+                        : "text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand-strong)]",
                     )}
                   >
-                    <Icon
-                      name={item.icon}
+                    <span
                       className={cn(
-                        "h-5 w-5 transition-transform duration-150 group-hover:scale-105",
-                        selected ? "text-white" : "text-[var(--muted-soft)] group-hover:text-[var(--brand)]",
+                        "flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px] transition-all duration-200",
+                        selected ? "bg-white/20" : "bg-transparent group-hover:bg-[var(--brand-soft)]",
                       )}
-                    />
+                    >
+                      <Icon
+                        name={item.icon}
+                        className={cn(
+                          "h-4 w-4",
+                          selected ? "text-white" : "text-[var(--muted-soft)] group-hover:text-[var(--brand)]",
+                        )}
+                      />
+                    </span>
                     <span>{item.label}</span>
                     {selected && (
-                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-white/70" />
+                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-white/80" />
                     )}
                   </Link>
                 );
@@ -738,39 +745,45 @@ export function SidebarShell({
             <div className="h-px bg-[var(--line)]" />
 
             {/* Secondary nav */}
-            <div className="space-y-1.5">
-              <p className="mb-2 px-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-soft)]">
-                Support
+            <div className="space-y-1">
+              <p className="mb-3 px-3 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[var(--muted-soft)]">
+                General
               </p>
               <Link
                 href="/settings"
                 className={cn(
-                  "flex items-center gap-3.5 rounded-[16px] px-3.5 py-3 text-[0.9rem] font-semibold transition-all duration-150",
+                  "flex items-center gap-3 rounded-[14px] px-3.5 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
                   active === "settings"
-                    ? "bg-[var(--surface-soft)] text-[var(--brand)] font-bold"
-                    : "text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]"
+                    ? "bg-[var(--brand-xsoft)] text-[var(--brand-strong)]"
+                    : "text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand-strong)]"
                 )}
               >
-                <Icon name="settings" className={cn("h-5 w-5", active === "settings" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
+                <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px]",
+                  active === "settings" ? "bg-[var(--brand-soft)]" : "bg-transparent")}>
+                  <Icon name="settings" className={cn("h-4 w-4", active === "settings" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
+                </span>
                 <span>Settings</span>
               </Link>
               <Link
                 href="/support"
                 className={cn(
-                  "flex items-center gap-3.5 rounded-[16px] px-3.5 py-3 text-[0.9rem] font-semibold transition-all duration-150",
+                  "flex items-center gap-3 rounded-[14px] px-3.5 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
                   active === "support"
-                    ? "bg-[var(--surface-soft)] text-[var(--brand)] font-bold"
-                    : "text-[var(--muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--brand)]"
+                    ? "bg-[var(--brand-xsoft)] text-[var(--brand-strong)]"
+                    : "text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand-strong)]"
                 )}
               >
-                <Icon name="help" className={cn("h-5 w-5", active === "support" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
+                <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px]",
+                  active === "support" ? "bg-[var(--brand-soft)]" : "bg-transparent")}>
+                  <Icon name="help" className={cn("h-4 w-4", active === "support" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
+                </span>
                 <span>Help & Support</span>
               </Link>
             </div>
 
             {/* Bottom slot */}
             {bottomSlot ? (
-              <div className="mt-auto space-y-3">{bottomSlot}</div>
+              <div className="mt-auto space-y-2">{bottomSlot}</div>
             ) : (
               <div className="mt-auto" />
             )}
@@ -778,7 +791,7 @@ export function SidebarShell({
         </aside>
 
         {/* Main */}
-        <main className="min-w-0 bg-[var(--background)]">{children}</main>
+        <main className="min-w-0">{children}</main>
       </div>
     </div>
   );

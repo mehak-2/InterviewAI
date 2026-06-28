@@ -120,31 +120,31 @@ const stats = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-hidden bg-white text-slate-900">
+    <div className="min-h-screen overflow-hidden bg-[#faf9ff] text-slate-900">
       {/* ── Header ── */}
-      <header className="sticky top-0 z-50 border-b border-slate-100/80 bg-white/70 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[#e8e6f0] bg-[#faf9ff]/80 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 md:px-8">
           <BrandMark />
-          <nav className="hidden items-center gap-8 text-[0.88rem] font-semibold text-slate-600 md:flex">
-            <Link href="#features" className="transition-colors duration-150 hover:text-indigo-600">Features</Link>
-            <Link href="#how-it-works" className="transition-colors duration-150 hover:text-indigo-600">How it works</Link>
-            <Link href="#testimonials" className="transition-colors duration-150 hover:text-indigo-600">Stories</Link>
-            <Link href="#pricing" className="transition-colors duration-150 hover:text-indigo-600">Pricing</Link>
+          <nav className="hidden items-center gap-7 text-[0.86rem] font-semibold text-[#64748b] md:flex">
+            <Link href="#features" className="transition-colors duration-150 hover:text-[#6366f1]">Features</Link>
+            <Link href="#how-it-works" className="transition-colors duration-150 hover:text-[#6366f1]">How it works</Link>
+            <Link href="#testimonials" className="transition-colors duration-150 hover:text-[#6366f1]">Stories</Link>
+            <Link href="#pricing" className="transition-colors duration-150 hover:text-[#6366f1]">Pricing</Link>
           </nav>
           <details className="group relative md:hidden">
-            <summary className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-[12px] border border-slate-200/80 bg-white text-slate-600 transition hover:bg-slate-50 [&::-webkit-details-marker]:hidden">
+            <summary className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-[12px] border border-[#e8e6f0] bg-white text-slate-600 transition hover:bg-[#f4f3ff] [&::-webkit-details-marker]:hidden">
               <Icon name="dots" className="h-5 w-5" />
             </summary>
-            <nav className="absolute right-0 top-12 z-50 min-w-[180px] rounded-[16px] border border-slate-200/80 bg-white p-2 shadow-[0_12px_32px_rgba(15,23,42,0.08)]">
-              <Link href="#features" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-indigo-600">Features</Link>
-              <Link href="#how-it-works" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-indigo-600">How it works</Link>
-              <Link href="#testimonials" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-indigo-600">Stories</Link>
-              <Link href="#pricing" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-indigo-600">Pricing</Link>
+            <nav className="absolute right-0 top-12 z-50 min-w-[180px] rounded-[16px] border border-[#e8e6f0] bg-white p-2 shadow-[0_12px_32px_rgba(99,102,241,0.10)]">
+              <Link href="#features" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-[#f4f3ff] hover:text-[#6366f1]">Features</Link>
+              <Link href="#how-it-works" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-[#f4f3ff] hover:text-[#6366f1]">How it works</Link>
+              <Link href="#testimonials" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-[#f4f3ff] hover:text-[#6366f1]">Stories</Link>
+              <Link href="#pricing" className="block rounded-[10px] px-4 py-2.5 text-[0.88rem] font-semibold text-slate-600 transition hover:bg-[#f4f3ff] hover:text-[#6366f1]">Pricing</Link>
             </nav>
           </details>
           <div className="flex items-center gap-3">
-            <ButtonLink href="/login"  variant="ghost"   className="px-4 py-2 text-[0.88rem]">Log in</ButtonLink>
-            <ButtonLink href="/signup" className="px-4 py-2 text-[0.88rem]">Get Started Free</ButtonLink>
+            <ButtonLink href="/login"  variant="ghost"   className="px-4 py-2 text-[0.86rem]">Log in</ButtonLink>
+            <ButtonLink href="/signup" className="px-4 py-2 text-[0.86rem]">Get Started Free</ButtonLink>
           </div>
         </div>
       </header>
@@ -154,9 +154,9 @@ export default function Home() {
         <section className="relative overflow-hidden px-6 pb-24 pt-20 md:px-8 md:pb-32 md:pt-28">
           {/* BG blobs */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.06),transparent_65%)]" />
-            <div className="absolute top-1/3 -right-32 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.04),transparent_65%)]" />
-            <div className="absolute bottom-0 -left-24 h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(79,70,229,0.03),transparent_65%)]" />
+            <div className="animate-blob absolute -top-40 left-1/2 -translate-x-1/2 h-[640px] w-[640px] rounded-full" style={{ background: "radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%)" }} />
+            <div className="animate-blob delay-300 absolute top-1/3 -right-32 h-[440px] w-[440px] rounded-full" style={{ background: "radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 65%)" }} />
+            <div className="animate-blob delay-500 absolute bottom-0 -left-24 h-[360px] w-[360px] rounded-full" style={{ background: "radial-gradient(circle, rgba(79,70,229,0.04) 0%, transparent 65%)" }} />
           </div>
 
           <div className="relative mx-auto max-w-7xl">
@@ -174,23 +174,23 @@ export default function Home() {
                 with AI
               </h1>
 
-              <p className="mx-auto mt-6 max-w-xl text-[1.05rem] leading-8 text-slate-500">
+              <p className="mx-auto mt-6 max-w-xl text-[1.02rem] leading-7 text-slate-500">
                 The most realistic AI-powered interview prep platform. Get personalized mock interviews, instant feedback, and land your dream job faster.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <ButtonLink href="/signup" className="px-7 py-3.5 text-[1rem]">
+                <ButtonLink href="/signup" className="px-7 py-3.5 text-[0.97rem]">
                   Start Free Trial
                   <Icon name="arrow-right" className="h-4 w-4" />
                 </ButtonLink>
-                <ButtonLink href="#demo" variant="secondary" className="px-7 py-3.5 text-[1rem]">
+                <ButtonLink href="#demo" variant="secondary" className="px-7 py-3.5 text-[0.97rem] border border-[#e8e6f0] shadow-[var(--shadow-sm)]">
                   <Icon name="play" className="h-4 w-4" />
                   Watch Demo
                 </ButtonLink>
               </div>
 
-              <p className="mt-5 text-[0.82rem] text-slate-400">
-                No credit card required · 5 free sessions · Cancel anytime
+              <p className="mt-5 text-[0.8rem] text-slate-400">
+                No credit card required &middot; 5 free sessions &middot; Cancel anytime
               </p>
             </div>
 
@@ -308,19 +308,19 @@ export default function Home() {
         </section>
 
         {/* ── Stats strip ── */}
-        <section className="border-y border-slate-200/60 bg-[#fafafa] px-6 py-10 md:px-8">
+        <section className="border-y border-[#e8e6f0] bg-[#f4f3ff]/60 px-6 py-10 md:px-8">
           <div className="mx-auto max-w-4xl grid grid-cols-2 gap-8 text-center md:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
-                <p className="text-[2.2rem] font-bold tracking-tight text-[#0d0f1a]">{s.value}</p>
-                <p className="mt-1 text-[0.85rem] text-[#6b7280]">{s.label}</p>
+                <p className="text-[2.1rem] font-bold tracking-tight text-[#3730a3]">{s.value}</p>
+                <p className="mt-1 text-[0.83rem] font-medium text-[#64748b]">{s.label}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ── Features ── */}
-        <section id="features" className="px-6 py-24 md:px-8">
+        <section id="features" className="px-6 py-24 md:px-8 bg-[#faf9ff]">
           <div className="mx-auto max-w-7xl">
             <SectionHeading
               eyebrow="Top Features"
@@ -364,7 +364,7 @@ export default function Home() {
         </section>
 
         {/* ── How it works ── */}
-        <section id="how-it-works" className="bg-[#f5f6fb] px-6 py-24 md:px-8">
+        <section id="how-it-works" className="bg-[#f4f3ff]/40 border-y border-[#e8e6f0] px-6 py-24 md:px-8">
           <div className="mx-auto max-w-7xl">
             <SectionHeading
               eyebrow="Process"
@@ -537,7 +537,7 @@ export default function Home() {
       </main>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-slate-200/60 bg-white px-6 py-10 md:px-8">
+      <footer className="border-t border-[#e8e6f0] bg-[#faf9ff] px-6 py-10 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 text-[#6b7280] md:flex-row md:items-start md:justify-between">
           <div className="space-y-3 max-w-xs">
             <BrandMark />
