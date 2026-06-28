@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%234f46e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M30 14a2 2 0 0 1-2 2H10l-4 4V8a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2z' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14 17v3' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M20 15v7' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M26 18v2' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E",
+        url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%234338ca'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' rx='9' fill='url(%23g)'/%3E%3Cg transform='translate(7 7)' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M24 16a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h18a2 2 0 0 1 2 2z'/%3E%3Cpath d='M8 11v4'/%3E%3Cpath d='M13 8v9'/%3E%3Cpath d='M18 10v5'/%3E%3C/g%3E%3C/svg%3E",
         type: "image/svg+xml",
       },
     ],

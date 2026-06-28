@@ -327,52 +327,61 @@ export function Icon({ name, className, style }: IconProps) {
   }
 }
 
-/* ───────────────────────────── BrandMark ───────────────────────────── */
-export function BrandMark({ compact = false }: { compact?: boolean }) {
+/* ─────────────────────────────────── BrandMark ─────────────────────────────────── */
+export function BrandMark({
+  compact = false,
+  variant = "default",
+}: {
+  compact?: boolean;
+  variant?: "default" | "sidebar";
+}) {
+  const textCls =
+    variant === "sidebar"
+      ? "text-white"
+      : "text-[var(--foreground)]";
+  const accentCls =
+    variant === "sidebar"
+      ? "text-[#a5b4fc]"
+      : "text-[#6366f1]";
+
   return (
     <Link
       href="/"
       className="inline-flex items-center gap-3 transition-opacity duration-200 hover:opacity-80"
     >
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-[14px] bg-[linear-gradient(135deg,#6366f1,#4f46e5)] text-white shadow-[0_8px_24px_rgba(99,102,241,0.35)]">
+      <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(135deg,#6366f1,#4338ca)] text-white shadow-[0_6px_18px_rgba(99,102,241,0.38)]">
         <Icon name="brand" className="h-5 w-5" />
       </span>
-      {!compact && (
-        <span className="text-[1.35rem] font-bold tracking-tight text-[var(--foreground)]">
-          Interview<span className="text-[#6366f1]">AI</span>
-        </span>
-      )}
-      {compact && (
-        <span className="text-[1.2rem] font-bold tracking-tight text-[var(--foreground)]">
-          Interview<span className="text-[#6366f1]">AI</span>
-        </span>
-      )}
+      <span className={`text-[1.2rem] font-bold tracking-tight ${textCls}`}>
+        Interview<span className={accentCls}>AI</span>
+      </span>
     </Link>
   );
 }
 
-/* ───────────────────────────── Badge ───────────────────────────── */
+/* ─────────────────────────────────── Badge ─────────────────────────────────── */
 export function Badge({
   children,
   tone = "violet",
   className,
 }: {
   children: ReactNode;
-  tone?: "violet" | "mint" | "slate" | "dark" | "amber";
+  tone?: "violet" | "mint" | "slate" | "dark" | "amber" | "rose";
   className?: string;
 }) {
-  const tones = {
-    violet: "bg-[#ede9fe] text-[#4f46e5] ring-[#c4b5fd]/40 dark:bg-indigo-900/40 dark:text-indigo-300 dark:ring-indigo-700/50",
-    mint:   "bg-emerald-50 text-emerald-600 ring-emerald-200/50 dark:bg-emerald-900/40 dark:text-emerald-300 dark:ring-emerald-700/50",
-    slate:  "bg-[var(--surface-soft)] text-[var(--muted)] ring-[var(--line)] dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-600/50",
-    dark:   "bg-[#0f172a] text-white ring-[#1e293b] dark:bg-slate-100 dark:text-slate-900 dark:ring-slate-200",
-    amber:  "bg-amber-50 text-amber-700 ring-amber-200/60 dark:bg-amber-900/40 dark:text-amber-300 dark:ring-amber-700/50",
+  const tones: Record<string, string> = {
+    violet: "bg-[#eef2ff] text-[#4f46e5] border-[#c7d2fe]",
+    mint:   "bg-[#d1fae5] text-[#065f46] border-[#6ee7b7]",
+    slate:  "bg-[#f1f5f9] text-[#475569] border-[#cbd5e1]",
+    dark:   "bg-[#0f172a] text-white border-[#1e293b]",
+    amber:  "bg-[#fef3c7] text-[#92400e] border-[#fcd34d]",
+    rose:   "bg-[#ffe4e6] text-[#be123c] border-[#fda4af]",
   };
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] ring-1",
-        tones[tone],
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.15em]",
+        tones[tone] ?? tones.violet,
         className,
       )}
     >
@@ -381,7 +390,7 @@ export function Badge({
   );
 }
 
-/* ───────────────────────────── Card ───────────────────────────── */
+/* ─────────────────────────────────── Card ─────────────────────────────────── */
 export function Card({
   children,
   className,
@@ -392,8 +401,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-[24px] bg-[var(--surface)] border border-[var(--line)]",
-        "shadow-[0_4px_20px_rgba(99,102,241,0.06),0_1px_3px_rgba(99,102,241,0.04)]",
+        "rounded-2xl bg-[var(--surface)] border border-[var(--line)] shadow-[var(--shadow-sm)]",
         className,
       )}
     >
@@ -402,7 +410,7 @@ export function Card({
   );
 }
 
-/* ───────────────────────────── ButtonLink ───────────────────────────── */
+/* ─────────────────────────────────── ButtonLink ─────────────────────────────────── */
 export function ButtonLink({
   href,
   children,
@@ -414,26 +422,23 @@ export function ButtonLink({
   variant?: "primary" | "secondary" | "ghost" | "dark" | "outline";
   className?: string;
 }) {
-  const styles = {
+  const base = "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 select-none";
+  const styles: Record<string, string> = {
     primary:
-      "btn-shine bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white shadow-[0_8px_24px_rgba(79,70,229,0.22)] hover:shadow-[0_12px_32px_rgba(79,70,229,0.32)] hover:-translate-y-0.5 active:translate-y-0",
+      "btn-shimmer bg-gradient-to-r from-[#6366f1] to-[#4338ca] text-white shadow-[var(--shadow-brand-sm)] hover:shadow-[var(--shadow-brand)] hover:-translate-y-0.5 active:translate-y-0",
     secondary:
-      "bg-[var(--surface)] text-[var(--foreground)] ring-1 ring-[var(--line)] shadow-[var(--shadow-sm)] hover:bg-[var(--surface-soft)] hover:shadow-[var(--shadow-md)]",
+      "bg-[var(--surface)] text-[var(--foreground)] border border-[var(--line)] shadow-[var(--shadow-xs)] hover:bg-[var(--surface-soft)] hover:shadow-[var(--shadow-sm)]",
     ghost:
-      "bg-transparent text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand)]",
+      "bg-transparent text-[var(--muted)] hover:bg-[var(--brand-soft)] hover:text-[var(--brand-strong)]",
     dark:
-      "bg-white/12 text-white ring-1 ring-white/18 hover:bg-white/22 backdrop-blur-sm",
+      "bg-white/12 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm",
     outline:
-      "bg-transparent text-[var(--brand)] ring-1 ring-[var(--brand-mid)]/60 hover:bg-[var(--brand-soft)] hover:ring-[var(--brand)]",
+      "bg-transparent text-[var(--brand)] border border-[var(--brand)] hover:bg-[var(--brand-soft)]",
   };
   return (
     <Link
       href={href}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.9rem] font-semibold transition-all duration-200",
-        styles[variant],
-        className,
-      )}
+      className={cn(base, styles[variant] ?? styles.primary, className)}
     >
       {children}
     </Link>
@@ -591,7 +596,7 @@ export function CircularScore({
   );
 }
 
-/* ───────────────────────────── StatCard ───────────────────────────── */
+/* ─────────────────────────────────── StatCard ─────────────────────────────────── */
 export function StatCard({
   label,
   value,
@@ -608,31 +613,29 @@ export function StatCard({
   className?: string;
 }) {
   return (
-    <Card className={cn("p-6 card-hover", className)}>
-      <div className="flex items-start justify-between gap-4">
-        <div className="space-y-4">
-          <div
-            className="inline-flex h-12 w-12 items-center justify-center rounded-[14px] ring-1 ring-black/[0.04]"
-            style={{ backgroundColor: accent ?? "var(--brand-soft)" }}
-          >
-            <Icon name={icon} className="h-5.5 w-5.5" style={{ color: "var(--brand-strong)" }} />
-          </div>
-          <div>
-            <p className="text-[0.82rem] font-medium text-[var(--muted-soft)]">{label}</p>
-            <div className="mt-1 text-[2rem] font-bold leading-none tracking-tight text-[var(--foreground)]">{value}</div>
-          </div>
+    <Card className={cn("p-5 card-lift cursor-default", className)}>
+      <div className="flex items-start justify-between gap-3">
+        <div
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl"
+          style={{ backgroundColor: accent ?? "var(--brand-soft)" }}
+        >
+          <Icon name={icon} className="h-5 w-5" style={{ color: "var(--brand-strong)" }} />
         </div>
         {note ? (
-          <span className="rounded-full bg-[var(--brand-soft)] px-2.5 py-1 text-[0.72rem] font-bold text-[var(--brand)]">
+          <span className="rounded-full bg-[var(--success-soft)] px-2 py-0.5 text-[0.68rem] font-bold text-[var(--success-text)]">
             {note}
           </span>
         ) : null}
+      </div>
+      <div className="mt-4">
+        <p className="text-[0.75rem] font-medium text-[var(--muted-soft)] uppercase tracking-[0.12em]">{label}</p>
+        <p className="mt-1 text-[1.9rem] font-bold leading-none tracking-tight text-[var(--foreground)]">{value}</p>
       </div>
     </Card>
   );
 }
 
-/* ───────────────────────────── Avatar ───────────────────────────── */
+/* ─────────────────────────────────── Avatar ─────────────────────────────────── */
 export function Avatar({
   name,
   size = 44,
@@ -644,29 +647,28 @@ export function Avatar({
   tone?: "violet" | "mint" | "rose" | "indigo" | "slate";
   className?: string;
 }) {
-  const colors = {
-    violet: "bg-[linear-gradient(135deg,#ede9fe,#c4b5fd)] text-[#4338ca] dark:bg-[linear-gradient(135deg,#312e81,#4338ca)] dark:text-[#a5b4fc]",
-    mint:   "bg-[linear-gradient(135deg,#d1fae5,#6ee7b7)] text-[#047857] dark:bg-[linear-gradient(135deg,#064e3b,#065f46)] dark:text-[#6ee7b7]",
-    rose:   "bg-[linear-gradient(135deg,#fce7f3,#f9a8d4)] text-[#be185d] dark:bg-[linear-gradient(135deg,#5c1d3d,#831843)] dark:text-[#fbcfe8]",
-    indigo: "bg-[linear-gradient(135deg,#e0e7ff,#a5b4fc)] text-[#3730a3] dark:bg-[linear-gradient(135deg,#1e1b4b,#312e81)] dark:text-[#a5b4fc]",
-    slate:  "bg-[linear-gradient(135deg,#f1f5f9,#cbd5e1)] text-[#475569] dark:bg-[linear-gradient(135deg,#1e293b,#334155)] dark:text-[#94a3b8]",
+  const colors: Record<string, string> = {
+    violet: "bg-[#eef2ff] text-[#4f46e5]",
+    mint:   "bg-[#d1fae5] text-[#065f46]",
+    rose:   "bg-[#ffe4e6] text-[#be123c]",
+    indigo: "bg-[#e0e7ff] text-[#3730a3]",
+    slate:  "bg-[#f1f5f9] text-[#475569]",
   };
   return (
     <div
-      className={cn("grid shrink-0 place-items-center rounded-full font-bold ring-2 ring-white dark:ring-[var(--surface)]", colors[tone], className)}
+      className={cn(
+        "grid shrink-0 place-items-center rounded-full font-bold ring-2 ring-white dark:ring-[var(--surface)]",
+        colors[tone] ?? colors.violet,
+        className,
+      )}
       style={{ width: size, height: size, fontSize: size * 0.34 }}
     >
-      {name
-        .split(" ")
-        .map((part) => part[0])
-        .join("")
-        .slice(0, 2)
-        .toUpperCase()}
+      {name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
     </div>
   );
 }
 
-/* ───────────────────────────── SidebarShell ───────────────────────────── */
+/* ─────────────────────────────────── SidebarShell ─────────────────────────────────── */
 export function SidebarShell({
   active,
   children,
@@ -678,121 +680,112 @@ export function SidebarShell({
   topSlot?: ReactNode;
   bottomSlot?: ReactNode;
 }) {
-  const items = [
+  const navItems = [
     { key: "dashboard",  label: "Dashboard",  href: "/dashboard",  icon: "dashboard"  },
     { key: "interviews", label: "Interviews", href: "/interviews", icon: "interviews" },
     { key: "history",    label: "History",    href: "/history",    icon: "history"    },
     { key: "profile",    label: "Profile",    href: "/profile",    icon: "profile"    },
   ] as const;
 
+  const secondaryItems = [
+    { key: "settings", label: "Settings",     href: "/settings", icon: "settings" },
+    { key: "support",  label: "Help & Support", href: "/support",  icon: "help"     },
+  ] as const;
+
   return (
-    <div className="min-h-screen bg-[var(--background)] mesh-bg">
-      <div className="mx-auto grid min-h-screen w-full max-w-[1640px] lg:grid-cols-[272px_minmax(0,1fr)]">
-        {/* Sidebar */}
-        <aside className="border-b border-[var(--line)] glass-sidebar px-4 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
-          <div className="flex h-full flex-col gap-5">
-            {/* Logo */}
-            <div className="px-2 pb-1">
-              <BrandMark />
-            </div>
-
-            {topSlot ? <div className="space-y-2">{topSlot}</div> : null}
-
-            {/* Divider */}
-            <div className="h-px bg-[var(--line)]" />
-
-            {/* Nav */}
-            <nav className="space-y-1">
-              <p className="mb-3 px-3 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[var(--muted-soft)]">
-                Navigation
-              </p>
-              {items.map((item) => {
-                const selected = item.key === active;
-                return (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    className={cn(
-                      "group flex items-center gap-3 rounded-[14px] px-3.5 py-2.5 text-[0.875rem] font-semibold transition-all duration-200",
-                      selected
-                        ? "bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white nav-active-glow"
-                        : "text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand-strong)]",
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px] transition-all duration-200",
-                        selected ? "bg-white/20" : "bg-transparent group-hover:bg-[var(--brand-soft)]",
-                      )}
-                    >
-                      <Icon
-                        name={item.icon}
-                        className={cn(
-                          "h-4 w-4",
-                          selected ? "text-white" : "text-[var(--muted-soft)] group-hover:text-[var(--brand)]",
-                        )}
-                      />
-                    </span>
-                    <span>{item.label}</span>
-                    {selected && (
-                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-white/80" />
-                    )}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="h-px bg-[var(--line)]" />
-
-            {/* Secondary nav */}
-            <div className="space-y-1">
-              <p className="mb-3 px-3 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[var(--muted-soft)]">
-                General
-              </p>
-              <Link
-                href="/settings"
-                className={cn(
-                  "flex items-center gap-3 rounded-[14px] px-3.5 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
-                  active === "settings"
-                    ? "bg-[var(--brand-xsoft)] text-[var(--brand-strong)]"
-                    : "text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand-strong)]"
-                )}
-              >
-                <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px]",
-                  active === "settings" ? "bg-[var(--brand-soft)]" : "bg-transparent")}>
-                  <Icon name="settings" className={cn("h-4 w-4", active === "settings" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
-                </span>
-                <span>Settings</span>
-              </Link>
-              <Link
-                href="/support"
-                className={cn(
-                  "flex items-center gap-3 rounded-[14px] px-3.5 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
-                  active === "support"
-                    ? "bg-[var(--brand-xsoft)] text-[var(--brand-strong)]"
-                    : "text-[var(--muted)] hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand-strong)]"
-                )}
-              >
-                <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px]",
-                  active === "support" ? "bg-[var(--brand-soft)]" : "bg-transparent")}>
-                  <Icon name="help" className={cn("h-4 w-4", active === "support" ? "text-[var(--brand)]" : "text-[var(--muted-soft)]")} />
-                </span>
-                <span>Help & Support</span>
-              </Link>
-            </div>
-
-            {/* Bottom slot */}
-            {bottomSlot ? (
-              <div className="mt-auto space-y-2">{bottomSlot}</div>
-            ) : (
-              <div className="mt-auto" />
-            )}
+    <div className="flex min-h-screen bg-[var(--background)]">
+      {/* ── Dark Sidebar ── */}
+      <aside
+        style={{ background: "var(--sb-bg)" }}
+        className="hidden w-[260px] shrink-0 flex-col lg:flex sticky top-0 h-screen overflow-y-auto border-r border-[var(--sb-border)]"
+      >
+        <div className="flex h-full flex-col px-4 py-6">
+          {/* Logo */}
+          <div className="mb-6 px-2">
+            <BrandMark variant="sidebar" />
           </div>
-        </aside>
 
-        {/* Main */}
-        <main className="min-w-0">{children}</main>
-      </div>
+          {topSlot ? <div className="mb-4">{topSlot}</div> : null}
+
+          {/* Primary nav */}
+          <nav className="flex-1 space-y-0.5">
+            <p className="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[var(--sb-muted)]">
+              Main
+            </p>
+            {navItems.map((item) => {
+              const isActive = item.key === active;
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={cn(
+                    "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
+                    isActive
+                      ? "bg-[var(--sb-active-bg)] text-[var(--sb-active-text)] border-l-2 border-[var(--sb-active-border)]"
+                      : "text-[var(--sb-text)] hover:bg-[var(--sb-hover)] hover:text-white",
+                  )}
+                >
+                  <Icon
+                    name={item.icon}
+                    className={cn(
+                      "h-4.5 w-4.5 shrink-0 transition-colors",
+                      isActive ? "text-[var(--sb-active-text)]" : "text-[var(--sb-muted)] group-hover:text-white",
+                    )}
+                  />
+                  {item.label}
+                  {isActive && (
+                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[var(--sb-active-text)]" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Divider */}
+          <div className="my-4 h-px bg-[var(--sb-border)]" />
+
+          {/* Secondary nav */}
+          <div className="space-y-0.5">
+            <p className="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[var(--sb-muted)]">
+              General
+            </p>
+            {secondaryItems.map((item) => {
+              const isActive = item.key === active;
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={cn(
+                    "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
+                    isActive
+                      ? "bg-[var(--sb-active-bg)] text-[var(--sb-active-text)] border-l-2 border-[var(--sb-active-border)]"
+                      : "text-[var(--sb-text)] hover:bg-[var(--sb-hover)] hover:text-white",
+                  )}
+                >
+                  <Icon
+                    name={item.icon}
+                    className={cn(
+                      "h-4.5 w-4.5 shrink-0",
+                      isActive ? "text-[var(--sb-active-text)]" : "text-[var(--sb-muted)] group-hover:text-white",
+                    )}
+                  />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Bottom slot */}
+          {bottomSlot ? (
+            <div className="mt-auto pt-4">{bottomSlot}</div>
+          ) : (
+            <div className="mt-auto" />
+          )}
+        </div>
+      </aside>
+
+      {/* ── Main Content ── */}
+      <main className="min-w-0 flex-1">{children}</main>
     </div>
   );
 }

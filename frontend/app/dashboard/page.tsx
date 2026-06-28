@@ -253,27 +253,27 @@ export default function DashboardPage() {
   return (
     <AuthenticatedShell active="dashboard">
       {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)]/90 px-6 py-4 backdrop-blur-xl md:px-8">
+      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)] px-6 py-4 shadow-[var(--shadow-xs)] md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <div>
-            <h1 className="text-[1.35rem] font-bold tracking-tight text-[var(--foreground)]">
+            <h1 className="text-[1.3rem] font-bold tracking-tight text-[var(--foreground)]">
               {greeting}, {firstName} 👋
             </h1>
-            <p className="text-[0.8rem] text-[var(--muted-soft)]">{today}</p>
+            <p className="text-[0.78rem] text-[var(--muted-soft)]">{today}</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             {/* Search */}
-            <div className="hidden items-center gap-2.5 rounded-full border border-[var(--line)] bg-[var(--surface-soft)] px-4 py-2.5 text-[0.85rem] text-[var(--muted-soft)] md:flex md:min-w-[220px]">
-              <Icon name="search" className="h-4 w-4 shrink-0 text-[var(--brand-mid)]" />
+            <div className="hidden items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] px-3.5 py-2 text-[0.82rem] text-[var(--muted-soft)] md:flex md:min-w-[200px]">
+              <Icon name="search" className="h-3.5 w-3.5 shrink-0" />
               <span>Search sessions…</span>
-              <span className="ml-auto rounded-md border border-[var(--line)] px-1.5 py-0.5 text-[0.68rem] text-[var(--muted-soft)]">⌘K</span>
+              <kbd className="ml-auto rounded border border-[var(--line)] px-1.5 py-0.5 text-[0.65rem]">⌘K</kbd>
             </div>
             {/* Bell */}
-            <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--muted-soft)] shadow-[var(--shadow-xs)] transition hover:bg-[var(--brand-xsoft)] hover:text-[var(--brand)] hover:border-[var(--brand-mid)]/40">
-              <Icon name="bell" className="h-4.5 w-4.5" />
+            <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--line)] bg-[var(--surface)] text-[var(--muted-soft)] transition hover:bg-[var(--surface-soft)] hover:text-[var(--muted)]">
+              <Icon name="bell" className="h-4 w-4" />
             </button>
             {/* Avatar */}
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#6366f1] to-[#4f46e5] text-[0.7rem] font-bold text-white shadow-[0_4px_10px_rgba(99,102,241,0.30)]">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#6366f1] to-[#4338ca] text-[0.65rem] font-bold text-white shadow-[0_3px_8px_rgba(99,102,241,0.32)]">
               {initials}
             </div>
           </div>
@@ -416,12 +416,12 @@ export default function DashboardPage() {
               <div className="overflow-x-auto">
                 <table className="min-w-full text-left">
                   <thead>
-                    <tr className="border-b border-[var(--line)] bg-[var(--brand-xsoft)]">
-                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Role</th>
-                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Date</th>
-                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Score</th>
-                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Status</th>
-                      <th className="px-6 py-3.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">Action</th>
+                    <tr className="border-b border-[var(--line)] bg-[var(--surface-soft)]">
+                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Role</th>
+                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Date</th>
+                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Score</th>
+                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Status</th>
+                      <th className="px-5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted-soft)]">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[var(--line)]">
