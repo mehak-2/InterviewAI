@@ -1,71 +1,64 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
-/* ─────────────────────────────────────────────────────────
-   FUTURISTIC AI PLATFORM — obsidian & neon indigo/violet
-───────────────────────────────────────────────────────── */
 :root {
   color-scheme: dark;
 
-  /* Obsidian & Neon theme colors */
-  --background:       #04060e;
-  --foreground:       #f8fafc;
+  --background: #04060e;
+  --foreground: #f8fafc;
 
-  /* Surfaces - frosted obsidian glass */
-  --surface:          #0b0f19;
-  --surface-soft:     #121826;
-  --surface-hover:    #182033;
+  --surface: #0b0f19;
+  --surface-soft: #121826;
+  --surface-hover: #182033;
 
-  /* Text - bright slate & neon lavender */
-  --muted:            #94a3b8;
-  --muted-soft:       #64748b;
+  --muted: #94a3b8;
+  --muted-soft: #64748b;
 
-  /* Neon borders */
-  --line:             rgba(99,102,241,0.15);
-  --line-soft:        rgba(99,102,241,0.08);
+  --line: rgba(99, 102, 241, 0.15);
+  --line-soft: rgba(99, 102, 241, 0.08);
 
   /* Brand - vibrant neon purple/indigo */
-  --brand:            #818cf8;
-  --brand-strong:     #6366f1;
-  --brand-mid:        #4f46e5;
-  --brand-soft:       rgba(99,102,241,0.1);
-  --brand-xsoft:      rgba(99,102,241,0.05);
+  --brand: #818cf8;
+  --brand-strong: #6366f1;
+  --brand-mid: #4f46e5;
+  --brand-soft: rgba(99, 102, 241, 0.1);
+  --brand-xsoft: rgba(99, 102, 241, 0.05);
 
   /* Sidebar (Obsidian dark sidebar) */
-  --sb-bg:            #02040a;
-  --sb-surface:       #090d16;
-  --sb-border:        rgba(99,102,241,0.1);
-  --sb-text:          #cbd5e1;
-  --sb-muted:         #64748b;
-  --sb-hover:         rgba(255,255,255,0.04);
-  --sb-active-bg:     rgba(99,102,241,0.15);
-  --sb-active-text:   #a5b4fc;
+  --sb-bg: #02040a;
+  --sb-surface: #090d16;
+  --sb-border: rgba(99, 102, 241, 0.1);
+  --sb-text: #cbd5e1;
+  --sb-muted: #64748b;
+  --sb-hover: rgba(255, 255, 255, 0.04);
+  --sb-active-bg: rgba(99, 102, 241, 0.15);
+  --sb-active-text: #a5b4fc;
   --sb-active-border: #6366f1;
 
   /* Semantic status colors with neon glow offsets */
-  --success:          #10b981;
-  --success-soft:     rgba(16,185,129,0.1);
-  --success-text:     #34d399;
-  --danger:           #f43f5e;
-  --danger-soft:      rgba(244,63,94,0.1);
-  --warning:          #fbbf24;
-  --warning-soft:     rgba(251,191,36,0.1);
+  --success: #10b981;
+  --success-soft: rgba(16, 185, 129, 0.1);
+  --success-text: #34d399;
+  --danger: #f43f5e;
+  --danger-soft: rgba(244, 63, 94, 0.1);
+  --warning: #fbbf24;
+  --warning-soft: rgba(251, 191, 36, 0.1);
 
   /* Cybernetic shadows & neon aura glows */
-  --shadow-xs:  0 1px 2px rgba(0,0,0,0.5);
-  --shadow-sm:  0 2px 8px rgba(0,0,0,0.6);
-  --shadow-md:  0 4px 20px rgba(99,102,241,0.06), 0 2px 6px rgba(0,0,0,0.5);
-  --shadow-lg:  0 10px 30px rgba(99,102,241,0.1), 0 4px 12px rgba(0,0,0,0.6);
-  --shadow-xl:  0 20px 50px rgba(99,102,241,0.15), 0 8px 24px rgba(0,0,0,0.7);
-  --shadow-brand: 0 0 24px rgba(99,102,241,0.35);
-  --shadow-brand-sm: 0 0 12px rgba(99,102,241,0.25);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 20px rgba(99, 102, 241, 0.06), 0 2px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 30px rgba(99, 102, 241, 0.1), 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 50px rgba(99, 102, 241, 0.15), 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-brand: 0 0 24px rgba(99, 102, 241, 0.35);
+  --shadow-brand-sm: 0 0 12px rgba(99, 102, 241, 0.25);
 
   --font-sans: var(--font-plus-jakarta-sans), var(--font-outfit), system-ui, -apple-system, sans-serif;
   --font-mono: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
 
   /* Eases */
-  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme {
@@ -77,9 +70,17 @@
 /* ─────────────────────────────────────────────────────────
    RESET & SCROLLBAR
 ───────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html { height: 100%; background: var(--background); scroll-behavior: smooth; }
+html {
+  height: 100%;
+  background: var(--background);
+  scroll-behavior: smooth;
+}
 
 body {
   min-height: 100%;
@@ -93,9 +94,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-::selection { background: rgba(99,102,241,0.3); color: #ffffff; }
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #ffffff;
+}
 
 :focus-visible {
   outline: 2px solid var(--brand-strong);
@@ -104,61 +111,146 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Cybernetic slim scrollbar */
-::-webkit-scrollbar           { width: 4px; height: 4px; }
-::-webkit-scrollbar-track     { background: transparent; }
-::-webkit-scrollbar-thumb     { background: var(--line); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover{ background: var(--brand); }
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand);
+}
 
 /* ─────────────────────────────────────────────────────────
    ANIMATIONS & DYNAMIC UTILITIES
 ───────────────────────────────────────────────────────── */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 @keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.97); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
 @keyframes blob-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(30px, -20px) scale(1.08); }
-  66%      { transform: translate(-20px, 25px) scale(0.95); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+
+  66% {
+    transform: translate(-20px, 25px) scale(0.95);
+  }
 }
+
 @keyframes shine {
-  0%   { left: -100%; }
-  100% { left: 200%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
 }
+
 @keyframes pulse-neon {
-  0%, 100% { opacity: 0.2; box-shadow: 0 0 10px rgba(99,102,241,0.1); }
-  50%      { opacity: 0.6; box-shadow: 0 0 20px rgba(99,102,241,0.3); }
+
+  0%,
+  100% {
+    opacity: 0.2;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.1);
+  }
+
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
 }
 
-.animate-fade-up    { animation: fade-up 350ms var(--ease-out) both; }
-.animate-fade-in    { animation: fade-in 250ms ease both; }
-.animate-scale-in   { animation: scale-in 300ms var(--ease-spring) both; }
-.animate-blob       { animation: blob-drift 10s ease-in-out infinite; }
+.animate-fade-up {
+  animation: fade-up 350ms var(--ease-out) both;
+}
 
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
+.animate-fade-in {
+  animation: fade-in 250ms ease both;
+}
+
+.animate-scale-in {
+  animation: scale-in 300ms var(--ease-spring) both;
+}
+
+.animate-blob {
+  animation: blob-drift 10s ease-in-out infinite;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
 
 /* Metallic button shine */
 .btn-shimmer {
   position: relative;
   overflow: hidden;
 }
+
 .btn-shimmer::after {
   content: "";
   position: absolute;
-  top: 0; left: -100%; width: 50%; height: 100%;
-  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
   transform: skewX(-20deg);
 }
+
 .btn-shimmer:hover::after {
   animation: shine 0.65s ease forwards;
 }
@@ -167,19 +259,21 @@ a { color: inherit; text-decoration: none; }
 .card-lift {
   transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
 }
+
 .card-lift:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(99,102,241,0.35);
+  border-color: rgba(99, 102, 241, 0.35);
 }
 
 /* Grid overlay background for landing page */
 .cyber-grid {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(99,102,241,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99,102,241,0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
 }
+
 .cyber-glow-pill {
   animation: pulse-neon 3s ease-in-out infinite;
 }

@@ -685,7 +685,7 @@ export function SidebarShell({
     { key: "settings", label: "Settings",     href: "/settings", icon: "settings" },
     { key: "support",  label: "Help & Support", href: "/support",  icon: "help"     },
   ] as const;  return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-[#04060e]">
       {/* ── Dark Sidebar ── */}
       <aside
         className="hidden w-[260px] shrink-0 flex-col lg:flex sticky top-0 h-screen overflow-y-auto border-r border-slate-800 bg-slate-900"
