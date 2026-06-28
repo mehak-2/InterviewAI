@@ -6,7 +6,7 @@ const authRoutes = ["/login", "/signup"];
 const matchesRoute = (pathname: string, routes: string[]) =>
   routes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
   const hasValidToken = token && token !== "none";
   const { pathname } = request.nextUrl;
