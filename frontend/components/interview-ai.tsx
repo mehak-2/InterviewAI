@@ -335,15 +335,7 @@ export function BrandMark({
   compact?: boolean;
   variant?: "default" | "sidebar";
 }) {
-  const textCls =
-    variant === "sidebar"
-      ? "text-white"
-      : "text-[var(--foreground)]";
-  const accentCls =
-    variant === "sidebar"
-      ? "text-[#a5b4fc]"
-      : "text-[#6366f1]";
-
+  const isSidebar = variant === "sidebar";
   return (
     <Link
       href="/"
@@ -352,8 +344,11 @@ export function BrandMark({
       <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[12px] bg-[linear-gradient(135deg,#6366f1,#4338ca)] text-white shadow-[0_6px_18px_rgba(99,102,241,0.38)]">
         <Icon name="brand" className="h-5 w-5" />
       </span>
-      <span className={`text-[1.2rem] font-bold tracking-tight ${textCls}`}>
-        Interview<span className={accentCls}>AI</span>
+      <span
+        style={{ color: isSidebar ? "#ffffff" : "var(--foreground)" }}
+        className="text-[1.2rem] font-bold tracking-tight"
+      >
+        Interview<span style={{ color: isSidebar ? "#a5b4fc" : "#6366f1" }}>AI</span>
       </span>
     </Link>
   );
@@ -718,18 +713,17 @@ export function SidebarShell({
                   className={cn(
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
                     isActive
-                      ? "bg-indigo-600/20 text-indigo-400 border-l-2 border-indigo-500"
-                      : "text-slate-300 hover:bg-slate-800 hover:text-white",
+                      ? "bg-indigo-600/20 border-l-2 border-indigo-500"
+                      : "hover:bg-slate-800",
                   )}
+                  style={{ color: isActive ? "#a5b4fc" : "#cbd5e1" }}
                 >
                   <Icon
                     name={item.icon}
-                    className={cn(
-                      "h-4.5 w-4.5 shrink-0 transition-colors",
-                      isActive ? "text-indigo-400" : "text-slate-500 group-hover:text-white",
-                    )}
+                    style={{ color: isActive ? "#a5b4fc" : "#64748b" }}
+                    className="h-4.5 w-4.5 shrink-0 transition-colors group-hover:text-white"
                   />
-                  {item.label}
+                  <span>{item.label}</span>
                   {isActive && (
                     <span className="ml-auto h-1.5 w-1.5 rounded-full bg-indigo-400" />
                   )}
@@ -755,18 +749,17 @@ export function SidebarShell({
                   className={cn(
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
                     isActive
-                      ? "bg-indigo-600/20 text-indigo-400 border-l-2 border-indigo-500"
-                      : "text-slate-300 hover:bg-slate-800 hover:text-white",
+                      ? "bg-indigo-600/20 border-l-2 border-indigo-500"
+                      : "hover:bg-slate-800",
                   )}
+                  style={{ color: isActive ? "#a5b4fc" : "#cbd5e1" }}
                 >
                   <Icon
                     name={item.icon}
-                    className={cn(
-                      "h-4.5 w-4.5 shrink-0",
-                      isActive ? "text-indigo-400" : "text-slate-500 group-hover:text-white",
-                    )}
+                    style={{ color: isActive ? "#a5b4fc" : "#64748b" }}
+                    className="h-4.5 w-4.5 shrink-0 group-hover:text-white"
                   />
-                  {item.label}
+                  <span>{item.label}</span>
                 </Link>
               );
             })}
