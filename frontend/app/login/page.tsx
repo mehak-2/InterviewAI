@@ -42,20 +42,19 @@ function LoginContent() {
   };
 
   return (
-    <div className="flex min-h-screen" style={{ background: "var(--background)" }}>
+    <div className="flex min-h-screen bg-slate-50">
       {/* ── Left panel (decorative) ── */}
       <div
-        className="relative hidden lg:flex lg:w-[480px] xl:w-[560px] shrink-0 flex-col justify-between overflow-hidden p-12"
-        style={{ background: "var(--sb-bg)" }}
+        className="relative hidden lg:flex lg:w-[480px] xl:w-[560px] shrink-0 flex-col justify-between overflow-hidden bg-slate-900 p-12 text-slate-300"
       >
         {/* Blobs */}
         <div className="pointer-events-none absolute inset-0">
           <div
-            className="animate-blob absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full opacity-30"
+            className="animate-blob absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full opacity-20"
             style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 65%)" }}
           />
           <div
-            className="animate-blob delay-400 absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full opacity-20"
+            className="animate-blob delay-400 absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full opacity-10"
             style={{ background: "radial-gradient(circle, #4338ca 0%, transparent 65%)" }}
           />
         </div>
@@ -69,7 +68,7 @@ function LoginContent() {
             <h2 className="text-[2rem] font-bold leading-tight text-white">
               Nail every interview<br />with AI coaching.
             </h2>
-            <p className="mt-3 text-[0.95rem] leading-7" style={{ color: "var(--sb-text)" }}>
+            <p className="mt-3 text-[0.95rem] leading-7 text-slate-400">
               Practice realistic mock interviews, get instant AI feedback, and track your progress to land the job you deserve.
             </p>
           </div>
@@ -85,14 +84,14 @@ function LoginContent() {
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 text-[0.65rem] font-bold text-indigo-300">
                   {item.icon}
                 </span>
-                <span className="text-[0.88rem]" style={{ color: "var(--sb-text)" }}>{item.text}</span>
+                <span className="text-[0.88rem] text-slate-300">{item.text}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Bottom tagline */}
-        <p className="relative text-[0.75rem]" style={{ color: "var(--sb-muted)" }}>
+        <p className="relative text-[0.75rem] text-slate-500">
           © 2026 InterviewAI. All rights reserved.
         </p>
       </div>

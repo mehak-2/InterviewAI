@@ -60,22 +60,16 @@ export function AuthenticatedShell({
           {bottomSlot}
 
           {/* User card */}
-          <div
-            className="mb-2 rounded-xl p-3"
-            style={{ background: "var(--sb-surface)", border: "1px solid var(--sb-border)" }}
-          >
+          <div className="mb-2 rounded-xl border border-slate-800 bg-slate-950 p-3">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#6366f1] to-[#4338ca] text-[0.65rem] font-bold text-white shadow-[0_4px_10px_rgba(99,102,241,0.40)]">
                 {initials}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[0.8rem] font-semibold" style={{ color: "var(--sb-text)" }}>
+                <p className="truncate text-[0.8rem] font-semibold text-slate-200">
                   {displayName}
                 </p>
-                <span
-                  className="inline-flex items-center rounded-full px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wider"
-                  style={{ background: "rgba(99,102,241,0.18)", color: "var(--sb-active-text)" }}
-                >
+                <span className="inline-flex items-center rounded-full bg-indigo-500/20 px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wider text-indigo-300">
                   Pro
                 </span>
               </div>
@@ -88,18 +82,9 @@ export function AuthenticatedShell({
             onClick={handleLogout}
             disabled={signingOut}
             className={cn(
-              "flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-[0.82rem] font-semibold transition-all duration-150",
+              "flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-[0.82rem] font-semibold text-slate-400 transition-all duration-150 hover:bg-red-500/10 hover:text-red-400",
               signingOut ? "cursor-not-allowed opacity-50" : "",
             )}
-            style={{ color: "var(--sb-muted)" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(239,68,68,0.12)";
-              (e.currentTarget as HTMLButtonElement).style.color = "#f87171";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-              (e.currentTarget as HTMLButtonElement).style.color = "var(--sb-muted)";
-            }}
           >
             <Icon name="logout" className="h-4 w-4 shrink-0" />
             <span>{signingOut ? "Signing out…" : "Log out"}</span>

@@ -690,14 +690,11 @@ export function SidebarShell({
   const secondaryItems = [
     { key: "settings", label: "Settings",     href: "/settings", icon: "settings" },
     { key: "support",  label: "Help & Support", href: "/support",  icon: "help"     },
-  ] as const;
-
-  return (
-    <div className="flex min-h-screen bg-[var(--background)]">
+  ] as const;  return (
+    <div className="flex min-h-screen bg-slate-50">
       {/* ── Dark Sidebar ── */}
       <aside
-        style={{ background: "var(--sb-bg)" }}
-        className="hidden w-[260px] shrink-0 flex-col lg:flex sticky top-0 h-screen overflow-y-auto border-r border-[var(--sb-border)]"
+        className="hidden w-[260px] shrink-0 flex-col lg:flex sticky top-0 h-screen overflow-y-auto border-r border-slate-800 bg-slate-900"
       >
         <div className="flex h-full flex-col px-4 py-6">
           {/* Logo */}
@@ -709,7 +706,7 @@ export function SidebarShell({
 
           {/* Primary nav */}
           <nav className="flex-1 space-y-0.5">
-            <p className="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[var(--sb-muted)]">
+            <p className="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-slate-500">
               Main
             </p>
             {navItems.map((item) => {
@@ -721,20 +718,20 @@ export function SidebarShell({
                   className={cn(
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
                     isActive
-                      ? "bg-[var(--sb-active-bg)] text-[var(--sb-active-text)] border-l-2 border-[var(--sb-active-border)]"
-                      : "text-[var(--sb-text)] hover:bg-[var(--sb-hover)] hover:text-white",
+                      ? "bg-indigo-600/20 text-indigo-400 border-l-2 border-indigo-500"
+                      : "text-slate-300 hover:bg-slate-800 hover:text-white",
                   )}
                 >
                   <Icon
                     name={item.icon}
                     className={cn(
                       "h-4.5 w-4.5 shrink-0 transition-colors",
-                      isActive ? "text-[var(--sb-active-text)]" : "text-[var(--sb-muted)] group-hover:text-white",
+                      isActive ? "text-indigo-400" : "text-slate-500 group-hover:text-white",
                     )}
                   />
                   {item.label}
                   {isActive && (
-                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[var(--sb-active-text)]" />
+                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-indigo-400" />
                   )}
                 </Link>
               );
@@ -742,11 +739,11 @@ export function SidebarShell({
           </nav>
 
           {/* Divider */}
-          <div className="my-4 h-px bg-[var(--sb-border)]" />
+          <div className="my-4 h-px bg-slate-800" />
 
           {/* Secondary nav */}
           <div className="space-y-0.5">
-            <p className="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[var(--sb-muted)]">
+            <p className="mb-2 px-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-slate-500">
               General
             </p>
             {secondaryItems.map((item) => {
@@ -758,15 +755,15 @@ export function SidebarShell({
                   className={cn(
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold transition-all duration-150",
                     isActive
-                      ? "bg-[var(--sb-active-bg)] text-[var(--sb-active-text)] border-l-2 border-[var(--sb-active-border)]"
-                      : "text-[var(--sb-text)] hover:bg-[var(--sb-hover)] hover:text-white",
+                      ? "bg-indigo-600/20 text-indigo-400 border-l-2 border-indigo-500"
+                      : "text-slate-300 hover:bg-slate-800 hover:text-white",
                   )}
                 >
                   <Icon
                     name={item.icon}
                     className={cn(
                       "h-4.5 w-4.5 shrink-0",
-                      isActive ? "text-[var(--sb-active-text)]" : "text-[var(--sb-muted)] group-hover:text-white",
+                      isActive ? "text-indigo-400" : "text-slate-500 group-hover:text-white",
                     )}
                   />
                   {item.label}

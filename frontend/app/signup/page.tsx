@@ -49,16 +49,15 @@ function SignupContent() {
   };
 
   return (
-    <div className="flex min-h-screen" style={{ background: "var(--background)" }}>
+    <div className="flex min-h-screen bg-slate-50">
       {/* ── Left dark panel ── */}
       <div
-        className="relative hidden lg:flex lg:w-[480px] xl:w-[540px] shrink-0 flex-col justify-between overflow-hidden p-12"
-        style={{ background: "var(--sb-bg)" }}
+        className="relative hidden lg:flex lg:w-[480px] xl:w-[540px] shrink-0 flex-col justify-between overflow-hidden bg-slate-900 p-12 text-slate-300"
       >
         <div className="pointer-events-none absolute inset-0">
-          <div className="animate-blob absolute -top-24 -right-24 h-[440px] w-[440px] rounded-full opacity-25"
+          <div className="animate-blob absolute -top-24 -right-24 h-[440px] w-[440px] rounded-full opacity-15"
             style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 65%)" }} />
-          <div className="animate-blob delay-400 absolute bottom-0 left-0 h-[360px] w-[360px] rounded-full opacity-15"
+          <div className="animate-blob delay-400 absolute bottom-0 left-0 h-[360px] w-[360px] rounded-full opacity-10"
             style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 65%)" }} />
         </div>
 
@@ -71,7 +70,7 @@ function SignupContent() {
             <h2 className="text-[1.9rem] font-bold leading-snug text-white">
               Start your interview<br />prep journey today.
             </h2>
-            <p className="mt-3 text-[0.9rem] leading-7" style={{ color: "var(--sb-text)" }}>
+            <p className="mt-3 text-[0.9rem] leading-7 text-slate-400">
               Join thousands of professionals who used InterviewAI to land their dream roles at top companies.
             </p>
           </div>
@@ -80,13 +79,13 @@ function SignupContent() {
             {bullets.map((b) => (
               <li key={b} className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-[0.65rem] font-bold text-emerald-400">✓</span>
-                <span className="text-[0.88rem]" style={{ color: "var(--sb-text)" }}>{b}</span>
+                <span className="text-[0.88rem] text-slate-300">{b}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="relative text-[0.75rem]" style={{ color: "var(--sb-muted)" }}>
+        <p className="relative text-[0.75rem] text-slate-500">
           © 2026 InterviewAI. All rights reserved.
         </p>
       </div>
