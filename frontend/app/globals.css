@@ -277,3 +277,50 @@ a {
 .cyber-glow-pill {
   animation: pulse-neon 3s ease-in-out infinite;
 }
+
+/* Dark skeleton loading pulse */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    background-color: rgba(148, 163, 184, 0.06);
+  }
+  50% {
+    background-color: rgba(148, 163, 184, 0.14);
+  }
+}
+
+.skeleton-dark {
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+/* Floating animation for empty states */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 0.8s linear infinite;
+}
+
+/* Neon text glow for brand accent */
+.text-glow-indigo {
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.2);
+}
+
+/* Gradient border card */
+.gradient-border {
+  background: linear-gradient(var(--surface), var(--surface)) padding-box,
+              linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(139, 92, 246, 0.2)) border-box;
+  border: 1px solid transparent;
+}

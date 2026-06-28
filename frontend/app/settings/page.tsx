@@ -56,15 +56,15 @@ export default function SettingsPage() {
   return (
     <AuthenticatedShell active="settings">
       {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)]/80 px-6 py-4 backdrop-blur-xl md:px-8">
+      <div className="sticky top-0 z-20 border-b border-indigo-500/10 bg-[#04060e]/90 px-6 py-4 backdrop-blur-xl md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <div>
-            <h1 className="text-[1.4rem] font-bold tracking-tight text-[var(--foreground)]">Settings</h1>
-            <p className="text-[0.82rem] text-[var(--muted-soft)]">Configure your interview and account options</p>
+            <h1 className="text-[1.25rem] font-extrabold tracking-tight text-white">Settings</h1>
+            <p className="text-[0.78rem] text-slate-500">Configure your interview and account options</p>
           </div>
           <button
             onClick={handleSaveSettings}
-            className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.9rem] font-semibold transition-all duration-200 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-[0_8px_20px_rgba(79,70,229,0.15)] hover:shadow-[0_12px_28px_rgba(79,70,229,0.25)] hover:-translate-y-0.5 active:translate-y-0"
+            className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-2 text-[0.85rem] font-bold text-white shadow-[0_4px_16px_rgba(99,102,241,0.3)] transition hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(99,102,241,0.45)]"
           >
             Save Settings
           </button>

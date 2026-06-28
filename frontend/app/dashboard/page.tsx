@@ -192,11 +192,11 @@ export default function DashboardPage() {
     async function loadData() {
       try {
         const [historyRes, statsRes] = await Promise.all([
-          api.get<{ history: InterviewHistoryItem[] }>("/interviews/history?limit=15"),
-          api.get<DashboardStats>("/interviews/stats"),
+          api.get<{ history: InterviewHistoryItem[] }>("/analytics/history?limit=15"),
+          api.get<{ stats: DashboardStats }>("/analytics/dashboard"),
         ]);
         setHistory(historyRes.data.history || []);
-        setStats(statsRes.data);
+        setStats(statsRes.data.stats);
       } catch (err) {
         setError(getApiErrorMessage(err, "Failed to load dashboard data"));
       } finally {

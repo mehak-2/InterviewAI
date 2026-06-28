@@ -27,11 +27,11 @@ type InterviewHistoryItem = {
 };
 
 function ScoreBar({ value }: { value: number }) {
-  const color = value >= 90 ? "#059669" : value >= 75 ? "#4f46e5" : "#d97706";
+  const color = value >= 90 ? "#10b981" : value >= 75 ? "#818cf8" : "#f59e0b";
   return (
     <div className="flex items-center gap-2.5">
-      <div className="h-1.5 w-20 overflow-hidden rounded-full bg-[#e5e7eb]">
-        <div className="h-full rounded-full transition-all" style={{ width: `${value}%`, backgroundColor: color }} />
+      <div className="h-1.5 w-20 overflow-hidden rounded-full bg-slate-800">
+        <div className="h-full rounded-full transition-all shadow-[0_0_6px_rgba(99,102,241,0.4)]" style={{ width: `${value}%`, backgroundColor: color }} />
       </div>
       <span className="text-[0.88rem] font-bold" style={{ color }}>{value}%</span>
     </div>
@@ -128,18 +128,18 @@ export default function HistoryPage() {
   return (
     <AuthenticatedShell active="history">
       {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)]/80 px-6 py-4 backdrop-blur-xl md:px-8">
+      <div className="sticky top-0 z-20 border-b border-indigo-500/10 bg-[#04060e]/90 px-6 py-4 backdrop-blur-xl md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <div>
-            <h1 className="text-[1.4rem] font-bold tracking-tight text-[var(--foreground)]">Interview History</h1>
-            <p className="text-[0.82rem] text-[var(--muted-soft)]">Track your progress and review past sessions</p>
+            <h1 className="text-[1.25rem] font-extrabold tracking-tight text-white">Interview History</h1>
+            <p className="text-[0.78rem] text-slate-500">Track your progress and review past sessions</p>
           </div>
           <div className="flex items-center gap-3">
-            <ButtonLink href="#export" variant="secondary" className="gap-2 px-4 py-2 text-[0.85rem]">
+            <button className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900 px-4 py-2 text-[0.82rem] font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white">
               <Icon name="download" className="h-4 w-4" />
-              Export PDF
-            </ButtonLink>
-            <ButtonLink href="/interviews" className="gap-2 px-4 py-2 text-[0.85rem]">
+              Export
+            </button>
+            <ButtonLink href="/interviews" className="gap-2 rounded-xl px-4 py-2 text-[0.82rem]">
               <Icon name="plus" className="h-4 w-4" />
               New Interview
             </ButtonLink>
@@ -149,7 +149,7 @@ export default function HistoryPage() {
 
       <div className="mx-auto max-w-[1200px] px-6 py-8 md:px-8">
         {error && (
-          <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-[0.9rem] text-red-800">
+          <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-[0.9rem] text-red-400">
             {error}
           </div>
         )}
@@ -159,34 +159,34 @@ export default function HistoryPage() {
             {/* Stats Cards Skeletons */}
             <div className="grid gap-4 sm:grid-cols-3">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
-                  <div className="h-4 w-24 skeleton" />
-                  <div className="mt-3 h-8 w-20 skeleton" />
+                <div key={i} className="rounded-2xl border border-slate-800 bg-[#090d16]/80 p-6">
+                  <div className="h-4 w-24 rounded bg-slate-800 animate-pulse" />
+                  <div className="mt-3 h-8 w-20 rounded bg-slate-800 animate-pulse" />
                 </div>
               ))}
             </div>
 
             {/* Filter Bar Skeleton */}
-            <div className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm">
-              <div className="h-10 w-full rounded-xl skeleton" />
+            <div className="rounded-2xl border border-slate-800 bg-[#090d16]/80 p-4">
+              <div className="h-10 w-full rounded-xl bg-slate-800 animate-pulse" />
             </div>
 
             {/* Table Skeleton */}
-            <div className="rounded-3xl border border-slate-100 bg-white shadow-sm overflow-hidden">
+            <div className="rounded-2xl border border-slate-800 bg-[#090d16]/80 overflow-hidden">
               <div className="p-6 space-y-4">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="flex items-center justify-between py-2 border-b border-slate-50 last:border-0">
+                  <div key={i} className="flex items-center justify-between py-2 border-b border-slate-900 last:border-0">
                     <div className="space-y-2">
-                      <div className="h-4.5 w-24 skeleton" />
-                      <div className="h-3 w-16 skeleton" />
+                      <div className="h-4 w-24 rounded bg-slate-800 animate-pulse" />
+                      <div className="h-3 w-16 rounded bg-slate-800 animate-pulse" />
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-xl skeleton" />
-                      <div className="h-4.5 w-32 skeleton" />
+                      <div className="h-9 w-9 rounded-xl bg-slate-800 animate-pulse" />
+                      <div className="h-4 w-32 rounded bg-slate-800 animate-pulse" />
                     </div>
-                    <div className="h-4.5 w-16 skeleton" />
-                    <div className="h-6 w-20 rounded-full skeleton" />
-                    <div className="h-9 w-28 rounded-xl skeleton" />
+                    <div className="h-4 w-16 rounded bg-slate-800 animate-pulse" />
+                    <div className="h-6 w-20 rounded-full bg-slate-800 animate-pulse" />
+                    <div className="h-9 w-28 rounded-xl bg-slate-800 animate-pulse" />
                   </div>
                 ))}
               </div>
@@ -241,31 +241,31 @@ export default function HistoryPage() {
 
             {/* Table or Empty State */}
             {history.length === 0 ? (
-              <Card className="mt-5 p-12 text-center flex flex-col items-center justify-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 mb-4 animate-float">
+              <Card className="mt-5 p-12 text-center flex flex-col items-center justify-center border-slate-800/70 bg-[#090d16]">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-500/15 text-indigo-400 mb-4">
                   <Icon name="plus" className="h-8 w-8" />
                 </div>
-                <h3 className="text-[1.15rem] font-bold text-slate-900">No mock interviews yet</h3>
+                <h3 className="text-[1.15rem] font-bold text-white">No mock interviews yet</h3>
                 <p className="mt-2 text-[0.88rem] text-slate-500 max-w-sm leading-relaxed">
                   Start practicing to see detailed feedback, metrics, transcripts, and insights customized to your profile.
                 </p>
-                <ButtonLink href="/interviews" className="mt-6 px-6 py-2.5">
+                <ButtonLink href="/interviews" className="mt-6 px-6 py-2.5 rounded-xl">
                   Start Your First Interview
                   <Icon name="arrow-right" className="h-4 w-4" />
                 </ButtonLink>
               </Card>
             ) : filteredHistory.length === 0 ? (
-              <Card className="mt-5 p-12 text-center flex flex-col items-center justify-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-50 text-slate-400 mb-4">
+              <Card className="mt-5 p-12 text-center flex flex-col items-center justify-center border-slate-800/70 bg-[#090d16]">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-800 text-slate-400 mb-4">
                   <Icon name="search" className="h-6 w-6" />
                 </div>
-                <h3 className="text-[1.05rem] font-bold text-slate-900">No results found</h3>
+                <h3 className="text-[1.05rem] font-bold text-white">No results found</h3>
                 <p className="mt-2 text-[0.88rem] text-slate-500">
-                  We couldn't find any interview sessions matching "{searchQuery}".
+                  We couldn&apos;t find any interview sessions matching &ldquo;{searchQuery}&rdquo;.
                 </p>
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="mt-4 text-[0.85rem] font-bold text-indigo-600 hover:text-indigo-700 transition"
+                  className="mt-4 text-[0.85rem] font-bold text-indigo-400 hover:text-indigo-300 transition"
                 >
                   Clear search query
                 </button>

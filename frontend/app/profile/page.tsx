@@ -243,31 +243,23 @@ export default function ProfilePage() {
   return (
     <AuthenticatedShell active="profile">
       {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--surface)]/80 px-6 py-4 backdrop-blur-xl md:px-8">
+      <div className="sticky top-0 z-20 border-b border-indigo-500/10 bg-[#04060e]/90 px-6 py-4 backdrop-blur-xl md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <div>
-            <h1 className="text-[1.4rem] font-bold tracking-tight text-[var(--foreground)]">Profile</h1>
-            <p className="text-[0.82rem] text-[var(--muted-soft)]">Manage your identity and preferences</p>
+            <h1 className="text-[1.25rem] font-extrabold tracking-tight text-white">Profile</h1>
+            <p className="text-[0.78rem] text-slate-500">Manage your identity and preferences</p>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={handleDiscardChanges}
-              className={cn(
-                "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.9rem] font-semibold transition-all duration-200",
-                "bg-[var(--surface)] text-[var(--foreground)] ring-1 ring-[var(--line)] shadow-sm hover:bg-[var(--surface-soft)]",
-                "px-4 py-2 text-[0.85rem]"
-              )}
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900 px-4 py-2 text-[0.85rem] font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white"
             >
               Discard
             </button>
             <button
               onClick={() => handleSaveChanges()}
               disabled={saving}
-              className={cn(
-                "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.9rem] font-semibold transition-all duration-200",
-                "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-[0_8px_20px_rgba(79,70,229,0.15)] hover:shadow-[0_12px_28px_rgba(79,70,229,0.25)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-55 disabled:pointer-events-none",
-                "px-4 py-2 text-[0.85rem]"
-              )}
+              className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-2 text-[0.85rem] font-bold text-white shadow-[0_4px_16px_rgba(99,102,241,0.3)] transition hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(99,102,241,0.45)] disabled:opacity-55 disabled:pointer-events-none"
             >
               {saving ? "Saving..." : "Save Changes"}
             </button>
@@ -287,7 +279,7 @@ export default function ProfilePage() {
             <div className="flex items-end gap-4">
               <div className="-mt-10">
                 <div className="relative">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,#ede9fe,#c4b5fd)] dark:bg-[linear-gradient(135deg,#312e81,#4338ca)] text-[1.4rem] font-bold text-[#4f46e5] dark:text-indigo-300 ring-4 ring-[var(--surface)] shadow-[0_8px_24px_rgba(79,70,229,0.2)]">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-[20px] bg-gradient-to-br from-[#312e81] to-[#4338ca] text-[1.4rem] font-bold text-indigo-200 ring-4 ring-[#090d16] shadow-[0_8px_24px_rgba(79,70,229,0.35)]">
                     {initials}
                   </div>
                   <button className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#4f46e5] text-white shadow-md">
